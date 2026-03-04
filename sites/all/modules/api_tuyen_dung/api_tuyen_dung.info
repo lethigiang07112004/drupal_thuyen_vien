@@ -1,0 +1,5 @@
+name = Module tin tức Pacific Man Power
+core = 7.x
+files[] = api_tuyen_dung.module
+package = ANDIN JSC
+php = 7.0

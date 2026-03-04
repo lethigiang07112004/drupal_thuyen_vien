@@ -1,0 +1,427 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bg-maritime {
+    min-height: 100vh;
+    padding: 1rem;
+    background-image: url("/sites/all/themes/tuyen_dung/images/bgLogin.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    max-width: 64rem;
+    margin: 0 auto;   
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.form-card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+.form-header {
+    background-color: rgb(240, 253, 244);
+    padding: 1.5rem 2rem;
+
+}
+
+.form-header h1 {
+    color: rgb(16, 185, 129);
+    font-size: 18px;
+    font-weight: 600px;
+    padding-left: 8px;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: rgb(37, 99, 235);
+    font-size: 16px;
+    margin: 0;
+}
+
+.header-content {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    height: 3rem;
+}
+
+.SEN-logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.webform-client-form {
+    margin: 0;
+    padding: 32px;
+}
+
+.form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d1d5db;
+    text-align: center;
+    color: #374151
+}
+
+.form-footer p {
+    margin: 0;
+}
+
+.hotline-contacts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+@media (min-width: 800px) {
+    .hotline-contacts {
+        grid-template-columns: repeat(3, 1fr);
+        /* Chia 3 cột đều nhau */
+    }
+}
+
+
+.hotline-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0 1rem;
+    color: #2563eb;
+}
+
+.hotline-contact a {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.webform-component--nhom1 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom1 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom2 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom2 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom3 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom3 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom4 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom4 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom5 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom5 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom6 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom6 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom7 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom7 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.webform-component--nhom9 .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .webform-component--nhom9 .fieldset-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+.webform-component--nhom2 .form-item {
+    margin: 0;
+}
+
+.webform-component--nhom2 {
+    margin-bottom: 1.5rem;
+}
+
+.webform-component--nhom5 {
+    margin-bottom: 1.5rem;
+}
+
+.webform-component--nhom5 .form-item {
+    margin: 0;
+}
+
+.form-item {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.form-item .form-type-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-item input[type="radio"] {
+    margin: 0;
+}
+
+.form-item label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(55, 65, 81);
+    margin: 0;
+}
+
+.form-item input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+select {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    margin: 0;
+    padding: 8px 12px;
+    height: 35px;
+    font-weight: 400;
+}
+.form-item input:focus{
+    outline: none !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2) !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-item select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    margin: 0;
+    padding: 8px 12px;
+    height: 35px;
+    color: #000;
+    font-weight: 400;
+}
+
+.form-item input[type="email"] {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: all 0.2s;
+    margin: 0;
+    padding: 8px 12px;
+    height: 35px;
+}
+
+.form-item .salary-range {
+    display: flex;
+    gap: 0.5 rem;
+    align-items: center;
+    width: 100%;
+}
+
+.form-item .salary-range input {
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+}
+
+.form-item .salary-range span {
+    margin: 0 0.5rem;
+    flex-shrink: 0;
+}
+
+.form-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.form-type-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+.form-type-checkbox input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    accent-color: #0056b3;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.form-type-checkbox label {
+    margin: 0;
+}
+
+input[type="checkbox"]:focus {
+    outline: 2px solid rgba(0, 86, 179, 0.2);
+    outline-offset: 1px;
+    border-radius: 2px;
+}
+
+.description {
+    display: none;
+}
+
+.form-managed-file input[type="submit"][value="Upload"],
+.form-managed-file input[type="submit"][value="Tải lên"] {
+    display: none !important;
+}
+
+.form-managed-file::after {
+    content: attr(data-text);
+    color: inherit;
+    font-size: 16px;
+    pointer-events: none;
+    display: block;
+    padding: 16px;
+    border: 2px dashed #ccc;
+    text-align: center;
+}
+
+.form-managed-file {
+    color: #888;
+}
+
+.form-managed-file input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.webform-component--nhom7--laodong--nhap-ten-nuoc-lao-dong label,
+.webform-component--nhom7--ly-do--nhap-ly-do label,
+.webform-component--kn-tau--nhap-tau label,
+.webform-component--thiet-bi--nhap-thiet-bi-khac label,
+.webform-component--nhom6--laodong--nhap-ten-nuoc-lao-dong label {
+    display: none;
+}
+
+.webform-component--nhom7--laodong .fieldset-wrapper,
+.webform-component--nhom6--laodong .fieldset-wrapper,
+.webform-component--nhom7--ly-do .fieldset-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.webform-component--nhom7--ly-do--tinh-trang-giay-to,
+.webform-component--nhom7--laodong--tung-di-lao-dong-o-nuoc-ngoai-chua---nuoc-nao,
+.webform-component--nhom6--laodong--tung-di-lao-dong-o-nuoc-ngoai-chua---nuoc-nao {
+    margin: 0;
+}
+.form-item .form-type-checkbox{
+    margin: 0;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+}
+.form-actions .btn-back{
+    text-decoration: underline !important;
+    padding: 1rem 1.5rem;
+    color: #ef4444;
+    font-weight: 500;
+}
+.form-actions .btn-back:hover{
+    color: #dc2626;
+}
+.form-actions  .button-primary{
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 13px;
+    background-color: #10b981;
+    margin-bottom: 0;
+}
+.form-actions  .button-primary:hover{
+    background-color: #059669;
+}

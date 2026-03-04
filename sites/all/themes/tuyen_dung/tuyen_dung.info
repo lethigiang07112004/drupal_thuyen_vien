@@ -1,0 +1,40 @@
+name = TUYỂN DỤNG THUYỀN VIÊN
+description = TUYỂN DỤNG THUYỀN VIÊN DESIGN BY ANDIN JSC
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] = assets/css/bootstrap-grid.css
+stylesheets[all][] = assets/css/dist/css/bootstrap.css
+stylesheets[all][] = assets/css/icons.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/custom.css
+stylesheets[all][] = assets/css/dai.css
+
+
+scripts[] =assets/js/jquery-3.3.1.min.js
+scripts[] =assets/js/jquery-migrate-3.0.0.min.js
+scripts[] =assets/js/mmenu.min.js
+scripts[] =assets/js/tippy.all.min.js
+scripts[] =assets/js/simplebar.min.js
+scripts[] =assets/js/bootstrap-slider.min.js
+scripts[] =assets/js/bootstrap-select.min.js
+scripts[] =assets/js/snackbar.js
+scripts[] =assets/js/clipboard.min.js
+scripts[] =assets/js/counterup.min.js
+scripts[] =assets/js/magnific-popup.min.js
+scripts[] =assets/js/slick.min.js
+scripts[] =assets/js/typed.js
+scripts[] =assets/js/custom_jquery.js
+scripts[] =assets/css/dist/js/bootstrap.min.js
+scripts[] =assets/js/custom.js
+scripts[] =assets/js/dai.js
+
+
+regions[info_sidebar] = Info Sidebar
+regions[main_frontend] = Main Frontend
+regions[main_frontend_center] = Main Frontend Center
+regions[main_frontend_after] = Main Frontend After
+regions[sidebar] = Sidebar
+regions[footer] = Footer
+regions[content] = Content

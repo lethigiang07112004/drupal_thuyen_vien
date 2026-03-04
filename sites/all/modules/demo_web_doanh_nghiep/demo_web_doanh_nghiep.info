@@ -1,0 +1,5 @@
+name = DEMO WEBSITE DOANH NGHIỆP
+core = 7.x
+files[] = demo_web_doanh_nghiep.module
+package = ANDIN JSC
+php = 7.0

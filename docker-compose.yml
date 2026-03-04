@@ -1,0 +1,20 @@
+services:
+  db: 
+    image: mariadb:10.3 # Hoặc mysql:5.7 tùy theo DB cũ của bạn
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d # Tự động import DB nếu thư mục trống
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc@@@
+      - MYSQL_DATABASE=drupal_thuyen_vien
+      - MYSQL_USER=drupal_thuyen_vien
+      - MYSQL_PASSWORD=4Xu2PdAm@Ge7YV0v
+
+  drupal:
+    image: drupal:7.91-php7.4-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - D:\GitHub\drupal_thuyen_vien:/var/www/html # Gắn mã nguồn có sẵn vào container
+    restart: always
+    depends_on:
+      - db

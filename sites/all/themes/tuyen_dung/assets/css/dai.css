@@ -1,0 +1,508 @@
+@media (min-width: 601px) and (max-width: 989px) {
+    body #titlebar.gradient{
+        padding:22px 0 16px !important;
+
+    }
+    .brc{
+        top:0 !important;
+    }
+    .not-front .utf-companies-list-aera >.row,.header-contact{
+        margin-top:30px;
+    }
+}
+
+@media (min-width: 990px){
+    .not-front .utf-companies-list-aera >.row{
+        margin-top:60px;
+    }
+    .header-contact{
+        margin-top:60px;
+    }
+    body #logo{
+        margin-right:35px;
+    }
+
+    .service .post-title h3{
+        font-size: 14pt !important;
+        width:70%;
+        margin: 0 auto;
+
+    }
+    body #logo img{
+        height:85px;
+    }
+    body #header{
+        height:110px;
+    }
+    .thong-tin .row:last-child{
+        margin:30px 0 0;
+    }
+
+    .col-xl-7.col-md-6.col-12.text-thuonghieu {
+        padding-top: 55px;
+    }
+    #navigation{
+        margin-left: 20px;
+        margin-top: 35px;
+    }
+    div#block-views-dich-vu-block-dich-vu {
+        padding: 30px 0 60px;
+    }
+
+
+    .img.img-giayphep img {
+        width: 253px;
+    }
+    .img.img-giaithuong {
+        margin-top: -63px;
+    }
+    .col-xl-4.col-md-6.col-12.img.img-thuonghieu img {
+        width: 250px;
+    }
+    .thong-tin .col-xl-8 p{
+        font-size:1.5em;
+
+    }
+    .thong-tin .col-xl-8 h3{
+        line-height: 1.4;
+        margin-bottom:15px;
+        font-size: 1.7rem;
+        font-weight:500;
+        text-align: left;
+    }
+    .page-node-88 .region.region-content{
+        margin: 0 auto -13px;
+    }
+    .page-taxonomy-term-12 .region.region-content{
+        margin: -10px auto -20px;
+    }
+    .page-khoi-tau .news-front{
+        margin-top: -35px;
+    }
+
+    .w-21{
+        width: 21%;
+    }
+   .img.img-kinhnghiem img {
+        width: 250px ;
+    }
+
+
+    .thong-tin .row{
+        margin-top:-20px;
+        margin-bottom:60px;
+    }
+    .recruitment {
+        padding: 60px 0;
+    }
+    body .intro-banner{
+        padding:280px 0;
+    }
+
+    .text-giayphep p {
+        padding-top: 0 !important;
+    }
+
+   .text-thuonghieu p {
+        padding-top: 0;
+    }
+
+    .thong-tin.container {
+        margin-bottom:-10px;
+    }
+    div#block-block-2 ,.bg-whychooseus,#block-views-block-front-block-tin-tuc-front {
+        margin: 60px auto 40px;
+    }
+    .map{
+        border-bottom: 1px solid #02618e;
+        padding-bottom: 20px;
+    }
+    .map .col-6.text-center {
+        padding-top: 50px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .not-front .utf-companies-list-aera >.row,.header-contact{
+        margin-top:30px;
+    }
+    .page-taxonomy-term .utf-companies-list-aera >.row,.page-node .utf-companies-list-aera >.row{
+        padding-top:30px;
+    }
+    body #titlebar.gradient{
+        padding:40px 0 28px !important; ;
+    }
+    .brc{
+        top:0 !important;
+        height:145px;
+        object-fit: cover;
+    }
+    .thong-tin .img{
+        margin-bottom: 20px;
+    }
+    .col-xl-4.col-md-6.col-12.img.img-thuonghieu img{
+        width:200px;
+    }
+    div#block-views-dich-vu-block-dich-vu {
+        padding: 30px 0 0;
+    }
+    .thong-tin .col-xl-8 *{
+        text-align:center !important;;
+    }
+    .page-node-88 .region.region-content{
+        margin-bottom: -15px;
+    }
+    #footer .col-md-4.mb-mb-30{
+        margin-bottom: 0 !important;
+    }
+
+    .utf-single-page-section-aera{
+        margin-bottom: -20px;
+    }
+    ul.pager {
+        margin-bottom: -30px;
+    }
+    .region.region-sidebar {
+        margin-bottom: -25px;
+    }
+    .tasks-list-container.compact-list .task-listing .task-listing-details{
+        padding-bottom:25px;
+    }
+    .page-khoi-tau .col-xl-4.col-md-4.col-12.position-relative,.page-tuyen-dung .col-xl-4.col-md-4.col-12.mb-4{
+        padding:0;
+    }
+    .page-tuyen-dung .region.region-content {
+        margin: 0 0 -30px;
+    }
+    #titlebar.gradient{
+        margin: 0 0 30px;
+    }
+    .page-khoi-tau .region.region-content {
+        margin-top: -35px;
+    }
+    .thong-tin h3 {
+        font-size: 20px;
+    }
+    .intro-banner .intro-stats li{
+        padding:10px;
+    }
+    .intro-stats {
+        display: flex !important;
+        justify-content: center;
+    }
+
+.bg-whychooseus{
+    margin-top:30px;
+}
+    .news-front h3 {
+        font-size: 13px;
+    }
+    .news-front .col-xl-3{
+        margin-bottom: 20px;
+    }
+    .recruitment{
+        padding-top:30px;
+    }
+    div#block-block-2 ,#block-views-block-front-block-tin-tuc-front {
+        margin: 30px auto 20px;
+    }
+    .service .row .col-xl-4,.recruitment .row .col-xl-4,.news-front .row .col-xl-4{
+        margin-bottom: 30px;
+    }
+    .map.container {
+        margin: 30px auto;
+    }
+    .thong-tin .col-xl-4{
+        order:1;
+    }
+    .thong-tin .col-xl-8{
+        order:2;
+        text-align: justify !important;
+    }
+    .col-xl-4.col-md-4.col-12.img.img-laban img {
+        width: 200px ;
+    }
+    .col-xl-4.col-md-4.col-12.img {
+        text-align: center !important;
+    }
+
+    .thong-tin.container p {
+        text-align: left;
+    }
+    .col-xl-4.col-md-4.col-12.img.img-kinhnghiem.text-right img {
+        width: 245px;
+    }
+    .col-xl-4.col-md-4.col-12.img.img-giaithuong img {
+        width: 257px;
+        margin-left: 21px;
+    }
+    .img.img-thuonghieu.text-right img {
+        width: 273px;
+        margin-left: -9px;
+    }
+}
+.thong-tin .col-xl-8 *,.map .text-center * ,.text-thuonghieu *{
+
+    color: #02618e ;
+}
+.whychooseus img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+.whychooseus h3{
+    margin-bottom:30px;
+
+}
+.whychooseus h3 span:before {
+    content: "";
+    position: absolute;
+    border-bottom: 3px solid white;
+    display: inline-block;
+    top: 123%;
+    width: 50%;
+    left:50%;
+    transform: translate(-50%,0);
+}
+.bg-whychooseus{
+    background-image: url("/sites/default/files/bg-whychooseus-min-z.jpg");
+    /*background: #eeeeee;*/
+
+}
+.whychooseus h3 span ,.whychooseus h2{
+    /*-webkit-text-stroke: 0.5px white;*/
+    color:white;
+}
+.whychooseus p{
+    color:white;
+}
+/*.whychooseus h2.text-center:before {
+    content: "";
+    position: absolute;
+    border-bottom: 3px solid white;
+    display: inline-block;
+    top: 115%;
+    left:50%;
+    width: 100px;
+    transform: translate(-50%,0);
+}*/
+.whychooseus h2.text-center{
+    /*position: relative;*/
+    font-size:30px;
+}
+.whychooseus .row {
+    padding-top: 40px;
+}
+.bg-whychooseus {
+    padding: 60px 15px 40px;
+}
+div#block-views-dich-vu-block-dich-vu {
+    background-image: url(/sites/default/files/bg-6.jpg);
+}
+.front h2.title:before{
+    content: "";
+    position: absolute;
+    border-bottom: 30px solid #003e75;
+    display: inline-block;
+    top: 4%;
+    left:0;
+    width: 5px;
+}
+.front h2.title{
+    position: relative;
+    padding-left: 20px;
+}
+
+.post-block {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.recruitment {
+    background: #eeeeee;
+}
+.recruitment .post-block {
+    background: white;
+}
+.recruitment .post-info p {
+    word-spacing: -2px;
+}
+.btn-ungtuyen a{
+    background: red;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight:500;
+}
+.recruitment i,.page-tuyen-dung i{
+    color:#dc3545 ;
+}
+.news-front .post-block{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.news-front .post-content{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.news-front .post-title h3 {
+    position: relative
+}
+.news-front .post-title h3:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -9px;
+    width: 3px;
+    height: 100%;
+    background: #02618e;
+}
+.service .row,.recruitment .row,.news-front .row{
+    margin-top: 30px;
+}
+.post-title h3 {
+    font-size: 12pt !important;
+}
+
+.map-en {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.map-vi {
+    padding-top: 20px;
+}
+.thong-tin p {
+    font-size: 12pt;
+}
+#navigation li:after {
+    position: absolute;
+    top: 92%;
+
+    font-style: italic;
+    white-space:nowrap;
+    color:#02618e;
+}
+
+ul#responsive {
+    margin-top: -15px;
+}
+#navigation ul li{
+    margin-right: 35px !important;
+    color:#02618e;
+}
+body{
+    font-family: 'Roboto', sans-serif;;
+}
+.post-category {
+    position: absolute;
+    top: 0;
+    background: #02618e;
+    left: 15px;
+    padding: 1px 24px 3px 14px;
+    border-top-left-radius: 10px;
+}
+.post-image img{
+    transition: all 0.3s;
+
+}
+.recruitment .post-image img{
+    border-radius: 5px;
+}
+.post-image img:hover{
+    transform: scale(1);
+}
+.service .post-title{
+    border-radius: 0 0 10px 10px;
+}
+.post-image{
+    overflow: hidden;
+}
+.contact {
+    color: #02618e !important;
+}
+.header-contact {
+    background: #02618e;
+    padding: 25px 0;
+    margin-bottom: 20px;
+}
+.front .news-front .post-content.border {
+    height: 100%;
+}
+.recruitment .post-info p,.page-tuyen-dung .post-info p{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.page-khoi-tau .post-info.border.px-2{
+    overflow:hidden;
+    border-radius: 0 0 10px 10px;
+}
+.page-khoi-tau .post-date a {
+    background: #02618e;
+    color: white;
+}
+.page-khoi-tau .post-date{
+    margin-bottom: 20px ;
+}
+.page-khoi-tau .col-xl-4.col-md-4.col-12.position-relative {
+    margin-bottom: 33px;
+}
+i.fa.fa-star.mr-1 {
+    margin-left: -2px;
+}
+i.fab.fa-react.mr-1 {
+    margin-left: -1px;
+}
+body #titlebar.gradient{
+    background-image: none /*url('/sites/default/files/bg-trangcon.jpg')*/ ;
+background-position: center ;
+    padding:110px 0 56px;
+    margin-bottom:0;
+    overflow: hidden;
+}
+.map .text-center *{
+    font-weight: 500;
+}
+.img-laban img.img-fluid{
+    width: 260px !important;
+}
+.text-thuonghieu h3{
+    font-weight:500;
+}
+#mm-6 ul.mm-listview li:nth-child(4){
+    display: none;
+}
+.whychooseus h3 span{
+    position: relative;
+}
+.post-block.pb-3{
+    border-radius: 8px;
+}
+#header #navigation ul li a:after{
+    display:none;
+}
+#header #navigation ul li{
+    text-align: center;
+}
+body #footer{
+    background-color:#19212c ;
+}
+#footer .row *{
+    color:white !important;
+}
+.brc{
+    position: absolute;
+    top:10%;
+}
+body #titlebar{
+    border-bottom: none;
+    background-color: unset;
+}
+
+body #titlebar.gradient::before{
+    background: none;
+}
+.service .post-title{
+    height:100%;
+}

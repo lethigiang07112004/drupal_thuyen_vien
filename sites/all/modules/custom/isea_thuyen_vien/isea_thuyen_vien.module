@@ -1,0 +1,465 @@
+<?php
+function contact_page1_custom_render() {
+  $form = drupal_get_form('isea_contact_customer_form1');
+  //$messages = theme('status_messages'); 
+  $form_output = drupal_render($form);
+
+  $logo_path = base_path() . drupal_get_path('theme', 'tuyen_dung') . '/images/images.jpg';
+
+  $output = '<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Liên hệ V-ISEA</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
+  </head>
+  <body>
+   <div class="min-h-screen bg-maritime">
+        <div class="container">
+            ' . $messages . '
+            <div class="form-card">
+                <header class="form-header">
+                    <h1>WELCOME TO V-ISEA VIET NAM CO., LTD</h1>
+                    <div class="header-content">
+                        <img src="' . $logo_path . '" alt="SEN logo" class="SEN-logo">
+                        <p>Mời bạn gửi thông tin thật chi tiết để V-ISEA có thể hỗ trợ bạn tốt nhất nhé! 😊</p>
+                    </div>
+                </header>
+                <div class="standalone-container">
+                 ' . $form_output . '
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  </html>';
+  print $output;
+  drupal_page_footer(); 
+  
+} 
+
+/**
+ * 3. Hàm định nghĩa Form 
+ */
+function isea_contact_customer_form1($form, &$form_state) {
+   $form['group_basic_info'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('group-info-row'), 
+    ),
+  );
+
+  $form['group_basic_info']['ho_ten'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Họ và tên'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Nhập họ tên')),
+  );
+
+  $form['group_basic_info']['tuoi'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Bao nhiêu tuổi'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('01/01/1970')),
+  );
+
+  $form['group_basic_info']['sdt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Số điện thoại'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Số điện thoại')),
+  );
+
+    $form['group_basic_info']['tinh_trang_hon_nhan'] = array(
+    '#type' => 'select',
+    '#title' => t('Tình trạng hôn nhân'),
+     '#options' => array(
+      '' => t('- Chọn tình trạng -'),
+      'Độc thân' => t('Độc thân'),
+      'Đã kết hôn' => t('Đã kết hôn'),
+      'Đã ly hôn' => t('Đã ly hôn'),
+    ),
+    '#required' => TRUE,
+  );
+
+  $form['group_basic_info']['so_con'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Số con (nếu có)'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Nhập số con')),
+  );
+
+   $form['que_quan'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Quê quán'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Nhập thông tin')),
+  );
+
+  $form['group_basic_info_ht'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('group-info-row-2'), 
+    ),
+  );
+
+  $form['group_basic_info_ht']['HoTenNguoiThan'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Họ tên người bảo lãnh'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Họ tên người bảo lãnh')),
+  );
+
+  $form['group_basic_info_ht']['MoiQuanHeNguoiThan'] = array(
+    '#type' => 'select',
+    '#title' => t('Mối quan hệ người bảo lãnh'),
+     '#options' => array(
+      '' => t('- Chọn mối quan hệ -'),
+      'Bố' => t('Bố'),
+      'Mẹ' => t('Mẹ'),
+      'Vợ' => t('Vợ'),
+      'Anh' => t('Anh'),
+      'Chị' => t('Chị'),
+      'Em' => t('Em'),
+    ),
+    '#required' => TRUE,
+  );
+
+   $form['group_basic_info_ht']['SDTNguoiThan'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Số điện thoại người bảo lãnh'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
+  );
+
+  $form['group_basic_info_ht']['hoc_van'] = array(
+    '#type' => 'select',
+    '#title' => t('Trình độ học vấn?'),
+     '#options' => array(
+      '' => t('- Chọn thông tin -'),
+      'THCS' => t('THCS'),
+      'THPT' => t('THPT'),
+      'SƠ CẤP' => t('SƠ CẤP'),
+      'TRUNG CẤP' => t('TRUNG CẤP'),
+      'CAO ĐẲNG' => t('CAO ĐẲNG'),
+      'ĐẠI HỌC' => t('ĐẠI HỌC'),
+    ),
+    '#required' => TRUE,
+  );
+
+  $form['group_basic_info_ht']['ngon_ngu'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Bạn biết những ngôn ngữ nào?'),
+    '#options' => array(
+      'Tiếng Anh' => t('Tiếng Anh'),
+      'Tiếng Trung' => t('Tiếng Trung'),
+    ),
+  );
+  $form['group_basic_info_ht']['group_basic_info_ld'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('group-info-row-1'), 
+    ),
+  );
+
+  $form['group_basic_info_ht']['group_basic_info_ld']['ld_nuoc_ngoai'] = array(
+    '#type' => 'radios',
+    '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
+    '#options' => array(
+      '1' => t('Có'),
+      '0' => t('Không'),
+    ),
+    '#required' => TRUE, // Tạo dấu sao đỏ (*)
+  );
+
+  $form['group_basic_info_ht']['group_basic_info_ld']['ten_nuoc_chi_tiet'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Nhập tên nước đã lao động'),
+      'class' => array('input-nuoc-ngoai'), 
+    ),
+  );
+
+  $form['group_basic_info_ht']['hut_thuoc'] = array(
+    '#type' => 'radios',
+    '#title' => t('Có hút thuốc không ?'),
+    '#options' => array(
+      '1' => t('Có'),
+      '0' => t('Không'),
+    ),
+  );
+
+  $form['group_basic_info_ht']['uong_ruou'] = array(
+    '#type' => 'radios',
+    '#title' => t('Có uống rượu không ?'),
+    '#options' => array(
+      '1' => t('Có'),
+      '0' => t('Không'),
+    ),
+  );
+
+  $form['group_basic_info_cv'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('group-info-row-3'), 
+    ),
+  );
+
+  $form['group_basic_info_cv']['cv_hien_tai'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Công việc hiện tại là gì?'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Công việc hiện tại')),
+  );
+
+  $form['group_basic_info_cv']['muc_luong'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mức lương hiện tại bao nhiêu'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Lương hiện tại')),
+  );
+
+    $form['group_basic_info_cv']['muc_luong_mong_muon'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mức lương mong muốn bao nhiêu'),
+    '#required' => TRUE,
+    '#attributes' => array('placeholder' => t('Lương mong muốn')),
+  );
+
+  $form['nganh_mong_muon'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Ngành bạn mong muốn học'),
+    '#options' => array(
+      'Ngành điều khiển tàu biển' => t('Ngành điều khiển tàu biển'),
+      'Ngành máy tàu biển' => t('Ngành máy tàu biển'),
+      'Ngành điện tàu biển' => t('Ngành điện tàu biển'),
+      'Ngành chế biến món ăn' => t('Ngành chế biến món ăn'),
+    ),
+  );
+
+    $form['file_cccd'] = array(
+    '#type' => 'managed_file',
+    '#title' => t('File đính kèm ảnh căn cước công dân'),
+    '#upload_location' => 'public://cccd_uploads/', // Thư mục lưu file
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
+      'file_validate_size' => array(5 * 1024 * 1024), // Giới hạn 5MB như trong ảnh
+    ),
+    '#description' => t('Hoặc kéo, thả file vào đây (Lưu ý: kích thước file phải dưới 5MB)'),
+  );
+
+
+    // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
+  $form['hotline_info'] = array(
+    '#markup' => '
+      <div class="hotline-container">
+        <p>Hotline tư vấn, đào tạo, tuyển dụng lao động</p>
+        <p><span class="phone">0934.255.955</span> - Ms Thúy (Zalo)</p>
+        <p><span class="phone">0936.940.987</span> - Ms Phương (Zalo)</p>
+        <p><span class="phone">0902.017.287</span> - Ms Trà My (Zalo)</p>
+      </div>',
+  );
+  // 2. Nhóm các nút điều hướng (Actions)
+  $form['actions'] = array('#type' => 'actions');
+
+  $form['actions']['back'] = array(
+    '#markup' => l(t('Quay lại'), '<front>', array('attributes' => array('class' => array('btn-back')))),
+  );
+
+    $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Gửi hồ sơ ngay'),
+    '#submit' => array('isea_contact_customer_form1_submit'),
+    '#attributes' => array('class' => array('btn-gui-thong-tin')),
+  );
+  $form['success_modal'] = array(
+  '#markup' => '
+    <div id="isea-success-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+      <div style="background:#fff; width:350px; margin:15% auto; padding:20px; border-radius:15px; text-align:center; font-family:sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <p style="font-size:16px; margin-bottom:25px;">Gửi hồ sơ thành công! 😊</p>
+        <button onclick="document.getElementById(\'isea-success-modal\').style.display=\'none\'" 
+                style="background:#2b4a83; color:#fff; border:none; padding:8px 30px; border-radius:20px; cursor:pointer; font-weight:bold; min-width:80px; border: 2px solid #2b4a83;">
+          OK
+        </button>
+      </div>
+    </div>
+  ',
+);
+if (!empty($_SESSION['isea_show_popup'])) {
+  $form['#attached']['js'][] = array(
+    'data' => 'document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("isea-success-modal").style.display = "block";
+    });',
+    'type' => 'inline',
+  );
+  // Xóa session để không hiện lại khi F5
+  unset($_SESSION['isea_show_popup']);
+}
+
+
+  return $form;
+}
+
+/**
+ * 4. Hàm xử lý submit 
+ */
+/**
+ * 1. Khai báo Menu cho Admin
+ */
+function isea_contact_menu1() {
+  $items['gui-thong-tin'] = array(
+    'title' => 'Gửi hồ sơ thuyền viên',
+    'page callback' => 'contact_page_custom_render',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['admin/thuyen-vien'] = array(
+    'title' => 'Danh sách thuyền viên',
+    'page callback' => 'isea_contact_admin_list',
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/thuyen-vien/export'] = array(
+    'page callback' => 'isea_contact_export_csv',
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_CALLBACK,
+  );
+  
+  return $items;
+}
+
+/**
+ * 2. Hàm xử lý khi nhấn nút gửi (Submit)
+ */
+function isea_contact_customer_form1_submit($form, &$form_state) {
+  $v = $form_state['values'];
+  $nganh_mong_muon = !empty($v['nganh_mong_muon']) ? implode(', ', array_filter($v['nganh_mong_muon'])) : '';
+  $ngon_ngu = !empty($v['ngon_ngu']) ? implode(', ', array_filter($v['ngon_ngu'])) : '';
+    $fid_cccd = !empty($v['file_cccd']) ? $v['file_cccd'] : 0;
+  // Lưu vào Database
+  try{
+      db_insert('isea_tuyen_dung')
+    ->fields(array(
+      'ho_ten' => $v['ho_ten'],
+      'tuoi' => $v['tuoi'],
+      'sdt' => $v['sdt'],
+      'hon_nhan' => $v['tinh_trang_hon_nhan'],
+      'so_con' => $v['so_con'],
+      'que_quan' => $v['que_quan'],
+      'HoTenNguoiThan' => $v['HoTenNguoiThan'],
+      'MoiQuanHeNguoiThan' => $v['MoiQuanHeNguoiThan'],
+      'SDTNguoiThan' => $v['SDTNguoiThan'],
+      'hoc_van' => $v['hoc_van'],
+      'ngon_ngu' => $ngon_ngu, 
+      'ld_nuoc_ngoai' => $v['ld_nuoc_ngoai'],
+      'ten_nuoc_chi_tiet' => $v['ten_nuoc_chi_tiet'],
+      'hut_thuoc' => $v['hut_thuoc'],
+      'uong_ruou' => $v['uong_ruou'],
+      'cv_hien_tai' => $v['cv_hien_tai'],
+      'luong_hien_tai' => $v['muc_luong'],
+      'muc_luong_mong_muon' => $v['muc_luong_mong_muon'],
+      'nganh_mong_muon' => $nganh_mong_muon,
+       'file_cccd' => $fid_cccd,
+      'created' => REQUEST_TIME,
+    ))
+    ->execute();
+
+  if ($fid_cccd > 0) {
+    $file = file_load($fid_cccd);
+    $file->status = FILE_STATUS_PERMANENT;
+    file_save($file);
+    file_usage_add($file, 'isea_contact', 'tuyen_dung', $fid_cccd);
+  }
+
+ // drupal_set_message('Hồ sơ đã được gửi thành công!');
+  $_SESSION['isea_show_popup'] = TRUE;
+  } catch (Exception $e) {
+    drupal_set_message($e->getMessage(), 'error'); 
+  }
+}
+
+/**
+ * 3. Trang hiển thị danh sách trong Admin
+ */
+function isea_contact_admin_list1() {
+  $header = array('ID', 'Họ tên','Bao nhiêu tuổi','Số điện thoại','Tình trạng hôn nhân','Số con','Quê quán',
+  'Họ tên người bảo lãnh','Mối quan hệ người bảo lãnh','Số điện thoại người bảo lãnh',
+  'Trình độ học vấn','Bạn biết những ngôn ngữ nào?','Từng đi lao động ở nước ngoài chưa?','Nước nào?',
+  'Có hút thuốc không ?','Có uống rượu không','Công việc hiện tại là gì','Mức lương hiện tại','Mức lương mong muốn',
+  'Ngành bạn mong muốn học','File CCCD','Ngày gửi');
+  $rows = array();
+
+  $result = db_select('isea_tuyen_dung', 't')
+    ->fields('t')
+    ->orderBy('created', 'DESC')
+    ->execute();
+
+    foreach ($result as $record) {
+    $rows[] = array(
+      $record->id,
+      check_plain($record->ho_ten),
+      check_plain($record->tuoi),
+      check_plain($record->sdt),
+      check_plain($record->hon_nhan),
+      check_plain($record->so_con),
+      check_plain($record->que_quan),
+      check_plain($record->HoTenNguoiThan),
+      check_plain($record->MoiQuanHeNguoiThan),
+      check_plain($record->SDTNguoiThan),
+      check_plain($record->hoc_van),
+      check_plain($record->ngon_ngu),
+      $record->ld_nuoc_ngoai,
+      check_plain($record->ten_nuoc_chi_tiet),
+      $record->hut_thuoc,
+      $record->uong_ruou,
+      check_plain($record->cv_hien_tai),
+      check_plain($record->luong_hien_tai),
+      check_plain($record->muc_luong_mong_muon),
+      check_plain($record->nganh_mong_muon),
+      $record->file_cccd, // ID của file ảnh
+      format_date($record->created, 'short'),
+    );
+  }
+
+
+  $link_export = l('📥 Xuất file Excel (CSV)', 'admin/thuyen-vien/export', array('attributes' => array('style' => 'font-weight:bold; color:green;')));
+  return $link_export . theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+
+/**
+ * 4. Hàm xuất CSV để mở bằng Excel
+ */
+function isea_contact_export_csv1() {
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename=ds-tuyen-dung.csv');
+  $fp = fopen('php://output', 'w');
+  fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); 
+  
+  fputcsv($fp, array('ID', 'Họ tên','Bao nhiêu tuổi','Số điện thoại','Tình trạng hôn nhân','Số con','Quê quán',
+  'Họ tên người bảo lãnh','Mối quan hệ người bảo lãnh','Số điện thoại người bảo lãnh',
+  'Trình độ học vấn','Bạn biết những ngôn ngữ nào?','Từng đi lao động ở nước ngoài chưa?','Nước nào?',
+  'Có hút thuốc không ?','Có uống rượu không','Công việc hiện tại là gì','Mức lương hiện tại','Mức lương mong muốn',
+  'Ngành bạn mong muốn học','File CCCD','Ngày gửi'));
+  $data = db_select('isea_tuyen_dung', 't')->fields('t')->execute();
+  foreach ($data as $r) {
+    fputcsv($fp, array($r->id, $r->ho_ten, $r->tuoi, $r->sdt, $r->hon_nhan, $r->so_con,
+    $r->que_quan, $r->HoTenNguoiThan,
+    $r->MoiQuanHeNguoiThan,
+    $r->SDTNguoiThan,
+    $r->hoc_van,
+    $r->ngon_ngu,
+    $r->ld_nuoc_ngoai,
+    $r->ten_nuoc_chi_tiet,
+    $r-> hut_thuoc,
+    $r->uong_ruou,
+    $r->cv_hien_tai,
+    $r->luong_hien_tai,
+    $r->muc_luong_mong_muon,
+    $r->nganh_mong_muon,
+    $r->file_cccd,
+    date('d/m/Y', $r->created)));
+  }
+  fclose($fp);
+}

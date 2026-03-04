@@ -1,0 +1,101 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_menu().
+ */
+function demo_web_doanh_nghiep_menu()
+{
+  $arrPageInit = array(
+    'gioi-thieu' => 'Giới thiệu',
+    'dich-vu' => 'Dịch vụ',
+    'san-pham' => 'Sản phẩm',
+    'doi-tac' => 'Đối tác',
+    'hinh-anh' => 'Hình ảnh',
+    'bai-viet' => 'Bài viết',
+    'chi-tiet-bai-viet' => 'Chi tiết bài viết',
+    'lien-he' => 'Liên hệ',
+    'dang-nhap' => 'Đăng nhập',
+    'khoi-phuc-mat-khau' => 'Khôi phục mật khẩu',
+    'chi-tiet-san-pham' => 'Chi tiết sản phẩm'
+  );
+  $arrPage = [];
+  foreach ($arrPageInit as $path => $title){
+    $arrPage[$path] = array(
+      'title' => $title,
+      'page callback' => str_replace('-', '_', $path).'_page',
+      'access callback' => 'user_access',
+      'access arguments' => array('access content'),
+    );
+  }
+  return $arrPage;
+}
+//    'khoi-phuc-mat-khau' => 'Khôi phục mật khẩu',
+//    'chi-tiet-san-pham' => 'Chi tiết sản phẩm'
+function gioi_thieu_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/gioi_thieu.html'),
+  );
+}
+function dich_vu_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/dich_vu.html'),
+  );
+}
+function san_pham_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/san_pham.html'),
+  );
+}
+function doi_tac_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/doi_tac.html'),
+  );
+}
+function hinh_anh_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/hinh_anh.html'),
+  );
+}
+function bai_viet_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/bai_viet.html'),
+  );
+}
+function chi_tiet_bai_viet_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/chi_tiet_bai_viet.html'),
+  );
+}
+function lien_he_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/lien_he.html'),
+  );
+}
+function dang_nhap_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/dang_nhap.html'),
+  );
+}
+function khoi_phuc_mat_khau_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/khoi_phuc_mat_khau.html'),
+  );
+}
+function chi_tiet_san_pham_page(){
+  return array(
+    '#type' => 'markup',
+    '#markup' => file_get_contents(__DIR__.'/html/chi_tiet_san_pham.html'),
+  );
+}

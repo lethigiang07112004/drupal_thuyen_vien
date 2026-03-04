@@ -1,0 +1,84 @@
+
+<?php
+
+function isea_contact_schema() {
+  $schema['isea_tuyen_dung'] = array(
+    'description' => 'Danh sách tuyển dụng',
+    'fields' => array(
+      'id' => array('type' => 'serial', 'not null' => TRUE),
+      'ho_ten' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''),
+      'tuoi' => array('type' => 'varchar', 'length' => 20, 'not null' => FALSE), // Luu dinh dang yyyy-mm-dd
+      'sdt' => array('type' => 'varchar', 'length' => 20, 'not null' => FALSE),
+      'hon_nhan' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'so_con' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'que_quan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'HoTenNguoiThan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'MoiQuanHeNguoiThan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'SDTNguoiThan' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'hoc_van' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'ngon_ngu' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE), // Dung kieu text cho mang ngon ngu
+      'ld_nuoc_ngoai' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'ten_nuoc_chi_tiet' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'hut_thuoc' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'uong_ruou' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'cv_hien_tai' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'luong_hien_tai' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'muc_luong_mong_muon' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'nganh_mong_muon' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'file_cccd' => array('type' => 'int', 'not null' => FALSE, 'default' => 0), // Luu FID cua file
+      'created' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
+    ),
+    'primary key' => array('id'),
+  );
+  $schema['isea_thuyen_vien'] = array(
+    'description' => 'Danh sách thuyền viên',
+    'fields' => array(
+      'id' => array('type' => 'serial', 'not null' => TRUE),
+      'chuc_danh' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'ho_ten' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''),
+      'tuoi' => array('type' => 'varchar', 'length' => 20, 'not null' => FALSE), // Luu dinh dang yyyy-mm-dd
+      'hon_nhan' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'so_con' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'chieu_cao' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'can_nang' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'size_giay' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'co_quan_ao' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'que_quan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'sdt' => array('type' => 'varchar', 'length' => 20, 'not null' => FALSE),
+      'mcft' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'email' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'muc_luong' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'mong_muon' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'HoTenNguoiThan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'MoiQuanHeNguoiThan' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'nam_sinh' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'SDTNguoiThan' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'hoc_van' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'tot_nghiep' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'ngon_ngu' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE), // Dung kieu text cho mang ngon ngu
+      'ld_nuoc_ngoai' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'ten_nuoc_chi_tiet' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'tt_giay_to' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'ly_do' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'hut_thuoc' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'uong_ruou' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+      'kinh_nghiem' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+      'luong_hien_tai' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'mix_tv' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'loai_tau' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'ten_tau' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'hai_do' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'ten_thiet_bi' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'file_cccd' => array('type' => 'int', 'not null' => FALSE, 'default' => 0), // Luu FID cua file
+      'created' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
+    ),
+    'primary key' => array('id'),
+  );
+
+
+  return $schema;
+}
+
+function isea_contact_uninstall() {
+  // Bang se tu dong bi xoa khi uninstall module
+}

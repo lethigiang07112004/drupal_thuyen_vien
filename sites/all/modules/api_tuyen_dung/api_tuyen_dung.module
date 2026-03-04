@@ -1,0 +1,52 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function api_tuyen_dung_menu() {
+  $items['get-tin-tuc'] = [
+    'title' => "Get Tin tức",
+    'delivery callback' => 'getListTinTuc',
+    'access callback' => 'user_access',
+    'access_arguments' => ['getListTinTuc_permission'],
+  ];
+  // Node
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function api_tuyen_dung_permission() {
+  return [
+    'getListTinTuc_permission' => [
+      'title' => 'Get list tin tức',
+    ],
+  ];
+}
+
+function getNodeFromQuery($query){
+  $result = $query->execute();
+  $data = isset($result['node']) ? node_load_multiple(array_keys($result['node'])) : [];
+  return $data;
+}
+
+function getListTinTuc(){
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'bai_viet')
+    ->propertyCondition('status', 1)
+    ->propertyOrderBy('nid', "DESC")
+    ->pager(20);
+  $nodes = getNodeFromQuery($query);
+  $data = [];
+  foreach ($nodes as $node){
+    $data[] = [
+      'nid' => $node->nid,
+      'title' => $node->title,
+      'content' => $node->body['und'][0]['value'],
+      'anhDaiDien' => str_replace('/home/pacificman/domains/pacificmanpower.vn/public_html', 'https://pacificmanpower.vn', drupal_realpath($node->field_image['und'][0]['uri']))
+    ];
+  }
+  drupal_json_output($data);
+}
+?>
