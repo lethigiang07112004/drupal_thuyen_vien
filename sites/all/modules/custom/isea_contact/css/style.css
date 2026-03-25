@@ -7,7 +7,7 @@ body {
 .bg-maritime {
     min-height: 100vh;
     padding: 1rem;
-    background-image: url("/sites/all/themes/tuyen_dung/images/bgLogin.jpg");
+    background-image: url("/sites/all/modules/custom/images/bgLogin.jpg");
     background-size: cover;
     background-position: center;
 }

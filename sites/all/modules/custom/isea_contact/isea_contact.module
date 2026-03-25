@@ -4,8 +4,7 @@ function contact_page_custom_render() {
   //$messages = theme('status_messages'); 
   $form_output = drupal_render($form);
 
-  $logo_path = base_path() . drupal_get_path('theme', 'tuyen_dung') . '/images/images1.jpg';
-  //$logo_path = '/' . drupal_get_path('theme', 'tuyen_dung') . '/images/images1.jpg';
+   $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
 
   $output = '<!DOCTYPE html>
   <html>

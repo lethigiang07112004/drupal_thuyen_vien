@@ -3,14 +3,13 @@ function tuyen_sinh_callback() {
   $form = drupal_get_form('isea_contact_tt_form'); 
   $form_output = drupal_render($form);
 
-  $logo_path = base_path() . drupal_get_path('theme', 'tuyen_dung') . '/images/images1.jpg';
-
+  $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
   $output = '<!DOCTYPE html>
   <html>
   <head>
     <title>Liên hệ PACIFIC</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
+    <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
   </head>
   <body>
