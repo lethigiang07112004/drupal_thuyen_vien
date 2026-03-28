@@ -1,0 +1,291 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.bg-maritime {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 40, 77, 0.7), rgba(0, 20, 38, 0.8)), 
+                url('/sites/all/modules/custom/images/moerschy-container-ship-832448.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 30px 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* Độ rộng vừa phải cho form chi tiết */
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    animation: fadeInUp 0.8s ease;
+}
+
+
+.form-header h1 {
+    font-size: 1.7rem;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-weight: 800;
+    color: #00d2ff; 
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    background: #ffffff; 
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-bottom: 5px solid #00d2ff;
+}
+
+.SEN-logo {
+    max-width: 100px; 
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+.header-content p {
+    color: #333; 
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    display: flex;
+}
+
+.form-item {
+    margin-bottom: 20px;
+}
+
+.form-item label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input, 
+input[type="tel"], 
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #00d2ff;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+}
+
+.group-info-row,  
+.group-info-row-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.group-info-row-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.form-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+}
+.form-type-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-item .form-type-checkbox .option {
+    margin-bottom: 0 !important;
+}
+
+.form-type-checkbox input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    accent-color: #0056b3;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.form-type-checkbox label {
+    margin: 0;
+}
+
+input[type="checkbox"]:focus {
+    outline: 2px solid rgba(0, 86, 179, 0.2);
+    outline-offset: 1px;
+    border-radius: 2px;
+}
+
+.form-item .form-type-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-item .form-type-radio .option {
+    margin-bottom: 0 !important;
+}
+
+.form-item input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    accent-color: #0056b3;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.form-radios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.form-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.form-managed-file input[type="submit"][value="Upload"],
+.form-managed-file input[type="submit"][value="Tải lên"] {
+    display: none !important;
+}
+
+.form-managed-file::after {
+    content: attr(data-text);
+    color: inherit;
+    font-size: 16px;
+    pointer-events: none;
+    display: block;
+    padding: 16px;
+    border: 2px dashed #ccc;
+    text-align: center;
+}
+
+
+.form-managed-file input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Nhắm trực tiếp vào class cha customer-drop */
+.customer-drop::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Hoặc nhắm vào div chứa phần kéo thả */
+.dropzone-desc::after {
+    content: none !important;
+    display: none !important;
+}
+
+.hotline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d1d5db;
+    text-align: center;
+    color: #d1d5db;
+}
+
+.hotline-container p {
+    margin: 0;
+}
+
+.hotline-contacts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+@media (min-width: 800px) {
+    .hotline-contacts {
+        grid-template-columns: repeat(3, 1fr);
+        /* Chia 3 cột đều nhau */
+    }
+}
+
+.hotline-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0 1rem;
+    color: #2563eb;
+}
+
+.hotline-contact a {
+    font-weight: bold;
+    color: #2563eb;
+    text-decoration: none;
+}
+.hotline-contact span {
+    color: #2563eb;
+}
+/* Hiệu ứng mượt mà */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .form-card { padding: 20px; }
+    .form-header h1 { font-size: 1.3rem; }
+}

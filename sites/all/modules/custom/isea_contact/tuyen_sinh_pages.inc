@@ -1,6 +1,7 @@
 <?php
-function tuyen_sinh_callback() {
-  $form = drupal_get_form('isea_contact_tt_form'); 
+function tuyen_sinh_callback()
+{
+  $form = drupal_get_form('isea_contact_tt_form');
   $form_output = drupal_render($form);
 
   $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
@@ -13,70 +14,106 @@ function tuyen_sinh_callback() {
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
   </head>
   <body>
-   <div class="min-h-screen bg-maritime">
-        <div class="container">
-            <div class="form-card">
-                <header class="form-header">
-                    <h1>WELCOME TO PACIFIC MANPOWER</h1>
-                    <div class="header-content">
-                        <img src="' . $logo_path . '" alt="SEN logo" class="SEN-logo">
-                        <p>Mời bạn gửi thông tin thật chi tiết để PACIFIC MANPOWER có thể hỗ trợ bạn tốt nhất nhé! 😊</p>
-                    </div>
-                </header>
-                <div class="standalone-container">
-                 ' . $form_output . '
-                </div>
-            </div>
-        </div>
+   <div class="bg-pattern">
+        <div class="bg-grid"></div>
     </div>
+     <svg class="wave-decoration" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="rgba(0, 93, 174, 0.03)"
+            d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,186.7C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+    </svg>
+    <div class="page-container">
+    <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="logo-icon">
+                        <img src="/sites/all/modules/custom/images/lg.png" class="logo">
+                    </div>
+                    <span class="brand-text">Pacific Manpower</span>
+                </div>
+
+                <a href="/thong-tin" class="back-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12" />
+                        <polyline points="12 19 5 12 12 5" />
+                    </svg>
+                    Quay lại
+                </a>
+            </div>
+        </header>
+        
+        <!-- Form Content -->
+        <main class="form-container">
+            <div class="form-header">
+                <h1 class="form-title">Đăng ky thông tin thuyền viên</h1>
+                <p class="form-subtitle">Vui lòng điền đầy đủ thông tin ứng tuyển</p>
+            </div>
+   
+                 ' . $form_output . '
+                </main>
+                </div>
   </body>
   </html>';
   print $output;
-  drupal_page_footer(); 
-  
-} 
+  drupal_page_footer();
+}
 
 /**
  * 3. Hàm định nghĩa Form 
  */
-function isea_contact_tt_form($form, &$form_state) { 
-   $form['group_basic_info'] = array(
+function isea_contact_tt_form($form, &$form_state)
+{
+  $form["#attributes"]['class'] = 'form-card';
+  $form_state["class"] = "form-card";
+  $form_fields = array(
+    "personal_info" => array(
+      "chuc_danh" => array(
+        '#type' => 'select',
+        '#title' => t('Chức danh'),
+        '#options' => array(
+          '' => t('- CAPT -'),
+          'CAPT' => t('CAPT'),
+          'CO' => t('CO'),
+          '2O' => t('2O'),
+          '3O' => t('3O'),
+          'BSN' => t('BSN'),
+          'CARP' => t('CARP'),
+          'AB' => t('AB'),
+          'OSD' => t('OSD'),
+          'DCADET' => t('DCADET'),
+          'C.E' => t('C.E'),
+          '2E' => t('2E'),
+          '3E' => t('3E'),
+          '4E' => t('4E'),
+          'ETO' => t('ETO'),
+          'ELECT' => t('ELECT'),
+          'FTR' => t('FTR'),
+          'OLR' => t('OLR'),
+          'WPR' => t('WPR'),
+          'ECADET' => t('ECADET'),
+          'COOK' => t('COOK'),
+          'MESS' => t('MESS'),
+          'OSE' => t('OSE'),
+          'OS' => t('OS'),
+        ),
+        '#required' => TRUE,
+      ),
+      'ho_ten' => array(
+        '#type' => 'textfield',
+        '#title' => t('Họ và tên'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập họ tên')),
+      ),
+    ),
+
+
+  );
+  $form['group_basic_info'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row'), 
+      'class' => array('group-info-row'),
     ),
-  );
-
-  $form['group_basic_info']['chuc_danh'] = array(
-    '#type' => 'select',
-    '#title' => t('Chức danh'),
-     '#options' => array(
-      '' => t('- CAPT -'),
-      'CAPT' => t('CAPT'),
-      'CO' => t('CO'),
-      '2O' => t('2O'),
-      '3O' => t('3O'),
-      'BSN' => t('BSN'),
-      'CARP' => t('CARP'),
-      'AB' => t('AB'),
-      'OSD' => t('OSD'),
-      'DCADET' => t('DCADET'),
-      'C.E' => t('C.E'),
-      '2E' => t('2E'),
-      '3E' => t('3E'),
-      '4E' => t('4E'),
-      'ETO' => t('ETO'),
-      'ELECT' => t('ELECT'),
-      'FTR' => t('FTR'),
-      'OLR' => t('OLR'),
-      'WPR' => t('WPR'),
-      'ECADET' => t('ECADET'),
-      'COOK' => t('COOK'),
-      'MESS' => t('MESS'),
-      'OSE' => t('OSE'),
-      'OS' => t('OS'),
-    ),
-    '#required' => TRUE,
   );
 
   $form['group_basic_info']['ho_ten'] = array(
@@ -86,21 +123,21 @@ function isea_contact_tt_form($form, &$form_state) {
     '#attributes' => array('placeholder' => t('Nhập họ tên')),
   );
 
-$form['group_basic_info']['tuoi'] = array(
-  '#type' => 'textfield',
-  '#title' => t('Bao nhiêu tuổi'),
-  '#required' => TRUE,
-  '#default_value' => '01/01/2001', 
-  '#attributes' => array(
-    'class' => array('custom-datepicker-input'),
-    'placeholder' => 'dd/mm/yyyy',
-  ),
-);
+  $form['group_basic_info']['tuoi'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Bao nhiêu tuổi'),
+    '#required' => TRUE,
+    '#default_value' => '01/01/2001',
+    '#attributes' => array(
+      'class' => array('custom-datepicker-input'),
+      'placeholder' => 'dd/mm/yyyy',
+    ),
+  );
 
-    $form['group_basic_info']['tinh_trang_hon_nhan'] = array(
+  $form['group_basic_info']['tinh_trang_hon_nhan'] = array(
     '#type' => 'select',
     '#title' => t('Tình trạng hôn nhân'),
-     '#options' => array(
+    '#options' => array(
       '' => t('- Chọn tình trạng -'),
       'Độc thân' => t('Độc thân'),
       'Đã kết hôn' => t('Đã kết hôn'),
@@ -119,7 +156,7 @@ $form['group_basic_info']['tuoi'] = array(
   $form['group_basic_info_ttc'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-5'), 
+      'class' => array('group-info-row-5'),
     ),
   );
   $form['group_basic_info_ttc']['chieu_cao'] = array(
@@ -139,7 +176,7 @@ $form['group_basic_info']['tuoi'] = array(
   $form['group_basic_info_ttc']['size_giay'] = array(
     '#type' => 'select',
     '#title' => t('Size giày'),
-     '#options' => array(
+    '#options' => array(
       '' => t('- Chọn tình trạng -'),
       '36' => t('36'),
       '37' => t('37'),
@@ -158,7 +195,7 @@ $form['group_basic_info']['tuoi'] = array(
   $form['group_basic_info_ttc']['co_quan_ao'] = array(
     '#type' => 'select',
     '#title' => t('Cỡ quần áo'),
-     '#options' => array(
+    '#options' => array(
       '' => t('- Chọn tình trạng -'),
       'XS' => t('XS'),
       'S' => t('S'),
@@ -172,7 +209,7 @@ $form['group_basic_info']['tuoi'] = array(
   );
 
 
-   $form['que_quan'] = array(
+  $form['que_quan'] = array(
     '#type' => 'textfield',
     '#title' => t('Địa chỉ'),
     '#required' => TRUE,
@@ -181,7 +218,7 @@ $form['group_basic_info']['tuoi'] = array(
   $form['group_basic_info_se'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-4'), 
+      'class' => array('group-info-row-4'),
     ),
   );
   $form['group_basic_info_se']['sdt'] = array(
@@ -205,16 +242,16 @@ $form['group_basic_info']['tuoi'] = array(
   $form['group_basic_info_nv'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-6'), 
+      'class' => array('group-info-row-6'),
     ),
   );
-$form['group_basic_info_nv']['muc_luong'] = array(
+  $form['group_basic_info_nv']['muc_luong'] = array(
     '#type' => 'textfield',
     '#title' => t('Mức lương thấp nhất có thể chấp nhận'),
     '#required' => TRUE,
     '#attributes' => array('placeholder' => t('Mức lương thấp nhất có thể chấp nhận')),
   );
-$form['group_basic_info_nv']['mong_muon'] = array(
+  $form['group_basic_info_nv']['mong_muon'] = array(
     '#type' => 'textfield',
     '#title' => t('Nguyện vọng, mong muốn khác'),
     '#required' => TRUE,
@@ -223,7 +260,7 @@ $form['group_basic_info_nv']['mong_muon'] = array(
   $form['group_basic_info_nt'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-5'), 
+      'class' => array('group-info-row-5'),
     ),
   );
 
@@ -237,7 +274,7 @@ $form['group_basic_info_nv']['mong_muon'] = array(
   $form['group_basic_info_nt']['MoiQuanHeNguoiThan'] = array(
     '#type' => 'select',
     '#title' => t('Mối quan hệ người bảo lãnh'),
-     '#options' => array(
+    '#options' => array(
       '' => t('- Chọn mối quan hệ -'),
       'Bố' => t('Bố'),
       'Mẹ' => t('Mẹ'),
@@ -257,23 +294,23 @@ $form['group_basic_info_nv']['mong_muon'] = array(
   );
 
 
-   $form['group_basic_info_nt']['SDTNguoiThan'] = array(
+  $form['group_basic_info_nt']['SDTNguoiThan'] = array(
     '#type' => 'textfield',
     '#title' => t('Số điện thoại người bảo lãnh'),
     '#required' => TRUE,
     '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
   );
-$form['group_basic_info_ht'] = array(
+  $form['group_basic_info_ht'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-2'), 
+      'class' => array('group-info-row-2'),
     ),
   );
 
   $form['group_basic_info_ht']['hoc_van'] = array(
     '#type' => 'select',
     '#title' => t('Học trường Hàng Hải nào'),
-     '#options' => array(
+    '#options' => array(
       '' => t('- Chọn thông tin -'),
       'Đại Học Hàng Hải VN' => t('Đại Học Hàng Hải VN'),
       'ĐHGTVT Hồ Chí Minh' => t('ĐHGTVT Hồ Chí Minh'),
@@ -290,7 +327,7 @@ $form['group_basic_info_ht'] = array(
     '#required' => TRUE,
     '#attributes' => array('placeholder' => t('2000-2004')),
   );
- 
+
 
   $form['group_basic_info_ht']['ngon_ngu'] = array(
     '#type' => 'textfield',
@@ -298,17 +335,17 @@ $form['group_basic_info_ht'] = array(
     '#required' => TRUE,
     '#attributes' => array('placeholder' => t('Nhập ngôn ngữ')),
   );
- 
+
   $form['group_basic_info_gt'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-5'), 
+      'class' => array('group-info-row-5'),
     ),
   );
   $form['group_basic_info_gt']['group_basic_info_ld'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-1'), 
+      'class' => array('group-info-row-1'),
     ),
   );
 
@@ -319,21 +356,21 @@ $form['group_basic_info_ht'] = array(
       '1' => t('Có'),
       '0' => t('Không'),
     ),
-    '#required' => TRUE, 
+    '#required' => TRUE,
   );
 
   $form['group_basic_info_gt']['group_basic_info_ld']['ten_nuoc_chi_tiet'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
       'placeholder' => t('Nhập tên nước đã lao động'),
-      'class' => array('input-nuoc-ngoai'), 
+      'class' => array('input-nuoc-ngoai'),
     ),
   );
 
   $form['group_basic_info_gt']['group_basic_info_giay_to'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-1'), 
+      'class' => array('group-info-row-1'),
     ),
   );
 
@@ -345,14 +382,14 @@ $form['group_basic_info_ht'] = array(
       'Đang để tại văn phòng cty khác' => t('Đang để tại văn phòng cty khác'),
       'Lý do khác' => t('Lý do khác'),
     ),
-    '#required' => TRUE, 
+    '#required' => TRUE,
   );
 
   $form['group_basic_info_gt']['group_basic_info_giay_to']['ly_do'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
       'placeholder' => t('Nhập tên lý do'),
-      'class' => array('input-nuoc-ngoai'), 
+      'class' => array('input-nuoc-ngoai'),
     ),
   );
 
@@ -397,7 +434,7 @@ $form['group_basic_info_ht'] = array(
   $form['group_basic_info_cv'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-7'), 
+      'class' => array('group-info-row-7'),
     ),
   );
 
@@ -417,15 +454,15 @@ $form['group_basic_info_ht'] = array(
       'Tàu General Cargo' => t('Tàu General Cargo'),
     ),
   );
- $form['group_basic_info_cv']['ten_tau'] = array(
+  $form['group_basic_info_cv']['ten_tau'] = array(
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => t('Nhập tàu')),
   );
- 
-$form['group_basic_info_tb'] = array(
+
+  $form['group_basic_info_tb'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array('group-info-row-7'), 
+      'class' => array('group-info-row-7'),
     ),
   );
 
@@ -438,15 +475,15 @@ $form['group_basic_info_tb'] = array(
       'Tokyo Keiki' => t('Tokyo Keiki'),
     ),
   );
- $form['group_basic_info_tb']['ten_thiet_bi'] = array(
+  $form['group_basic_info_tb']['ten_thiet_bi'] = array(
     '#type' => 'textfield',
     '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
   );
 
-    $form['file_cccd'] = array(
+  $form['file_cccd'] = array(
     '#type' => 'managed_file',
     '#title' => t('File đính kèm ảnh căn cước công dân'),
-    '#upload_location' => 'public://cccd_uploads/', 
+    '#upload_location' => 'public://cccd_uploads/',
     '#attributes' => array('class' => array('customer-drop')),
     '#upload_validators' => array(
       'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
@@ -454,50 +491,50 @@ $form['group_basic_info_tb'] = array(
     ),
   );
 
-    // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
+  // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
   $form['hotline_info'] = array(
     '#markup' => '
       <div class="hotline-container">
   <p>Hotline tư vấn, đào tạo, tuyển dụng thuyền viên</p>
   <div class="hotline-contacts">
     <div class="hotline-contact">
-      <a href="tel:0867560587">0867.560.587</a>
-      <span>- Ms Thu Hiền (Zalo)</span>
+      <a href="tel:0366893485">0366.893.485</a>
+      <span>- Ms Thu Trang (Zalo)</span>
     </div>
     <div class="hotline-contact">
-      <a href="tel:0862758586">0862.758.586</a>
-      <span>- Ms Trần Hiền (Zalo)</span>
+      <a href="tel:0901518819">090.151.8819</a>
+      <span>- Ms Thắm (Zalo)</span>
     </div>
     <div class="hotline-contact">
-      <a href="tel:0337490287">0337490287</a>
-      <span>- Ms Thảo (Zalo)</span>
+      <a href="tel:0904162189">0904.162.189</a>
+      <span>- Ms Vân (Zalo)</span>
     </div>
   </div>
 </div>',
   );
   // 2. Nhóm các nút điều hướng (Actions)
   $form['actions'] = array('#type' => 'actions');
-  
-$form['actions']['back'] = array(
-  '#markup' => l(
-    t('Quay lại'), 
-    'thong-tin', 
-    array(
-      'attributes' => array(
-        'class' => array('btn-back')
-      )
-    )
-  ),
-);
 
-    $form['actions']['submit'] = array(
+  $form['actions']['back'] = array(
+    '#markup' => l(
+      t('Quay lại'),
+      'thong-tin',
+      array(
+        'attributes' => array(
+          'class' => array('btn-back')
+        )
+      )
+    ),
+  );
+
+  $form['actions']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Gửi hồ sơ'),
     '#submit' => array('isea_contact_tt_form_submit'),
     '#attributes' => array('class' => array('btn-gui-ho-so')),
   );
- 
-$form['#attached']['library'][] = 'isea_contact/file-upload-lib';
+
+  $form['#attached']['library'][] = 'isea_contact/file-upload-lib';
 
   return $form;
 }
@@ -505,91 +542,124 @@ $form['#attached']['library'][] = 'isea_contact/file-upload-lib';
 /**
  * 4. Hàm xử lý submit 
  */
-function isea_contact_tt_form_submit($form, &$form_state) {
+function isea_contact_tt_form_submit($form, &$form_state)
+{
   $v = $form_state['values'];
   $tuoi_db = '';
-if (!empty($v['tuoi'])) {
+  if (!empty($v['tuoi'])) {
     // Chuyển từ dd/mm/yyyy sang yyyy-mm-dd
     $date_obj = DateTime::createFromFormat('d/m/Y', $v['tuoi']);
     $tuoi_db = $date_obj ? $date_obj->format('Y-m-d') : '';
-} 
+  }
   $kinh_nghiem = !empty($v['kinh_nghiem']) ? implode(', ', array_filter($v['kinh_nghiem'])) : '';
   $loai_tau = !empty($v['loai_tau']) ? implode(', ', array_filter($v['loai_tau'])) : '';
   $hai_do = !empty($v['hai_do']) ? implode(', ', array_filter($v['hai_do'])) : '';
-  
+
   $fid_cccd = !empty($v['file_cccd']) ? $v['file_cccd'] : 0;
   // Lưu vào Database
-  try{
-      db_insert('isea_thuyen_vien')
-    ->fields(array(
-      'chuc_danh' => $v['chuc_danh'],
-      'ho_ten' => $v['ho_ten'],
-      'tuoi'   => $tuoi_db,
-      'hon_nhan' => $v['tinh_trang_hon_nhan'],
-      'so_con' => $v['so_con'],
-      'chieu_cao' => $v['chieu_cao'],
-      'can_nang' => $v['can_nang'],
-      'size_giay' => $v['size_giay'],
-      'co_quan_ao' => $v['co_quan_ao'],
-      'que_quan' => $v['que_quan'],
-      'sdt' => $v['sdt'],
-      'mcft' => $v['mcft'],
-      'email' => $v['email'],
-      'muc_luong' => $v['muc_luong'],
-      'mong_muon' => $v['mong_muon'],
-      'HoTenNguoiThan' => $v['HoTenNguoiThan'],
-      'MoiQuanHeNguoiThan' => $v['MoiQuanHeNguoiThan'],
-      'nam_sinh' => $v['nam_sinh'],
-      'SDTNguoiThan' => $v['SDTNguoiThan'],
-      'hoc_van' => $v['hoc_van'],
-      'tot_nghiep' => $v['tot_nghiep'],
-      'ngon_ngu' => $v['ngon_ngu'], 
-      'ld_nuoc_ngoai' => $v['ld_nuoc_ngoai'],
-      'ten_nuoc_chi_tiet' => $v['ten_nuoc_chi_tiet'],
-      'tt_giay_to' => $v['tt_giay_to'],
-      'ly_do' => $v['ly_do'],
-      'hut_thuoc' => $v['hut_thuoc'],
-      'uong_ruou' => $v['uong_ruou'],
-      'kinh_nghiem' => $kinh_nghiem,
-      'mix_tv' => $v['mix_tv'],
-      'loai_tau' => $loai_tau,
-      'ten_tau' => $v['ten_tau'],
-      'hai_do' => $hai_do,
-      'ten_thiet_bi' => $v['ten_thiet_bi'],
-       'file_cccd' => $fid_cccd,
-      'created' => REQUEST_TIME,
-    ))
-    ->execute();
+  try {
+    db_insert('isea_thuyen_vien')
+      ->fields(array(
+        'chuc_danh' => $v['chuc_danh'],
+        'ho_ten' => $v['ho_ten'],
+        'tuoi'   => $tuoi_db,
+        'hon_nhan' => $v['tinh_trang_hon_nhan'],
+        'so_con' => $v['so_con'],
+        'chieu_cao' => $v['chieu_cao'],
+        'can_nang' => $v['can_nang'],
+        'size_giay' => $v['size_giay'],
+        'co_quan_ao' => $v['co_quan_ao'],
+        'que_quan' => $v['que_quan'],
+        'sdt' => $v['sdt'],
+        'mcft' => $v['mcft'],
+        'email' => $v['email'],
+        'muc_luong' => $v['muc_luong'],
+        'mong_muon' => $v['mong_muon'],
+        'HoTenNguoiThan' => $v['HoTenNguoiThan'],
+        'MoiQuanHeNguoiThan' => $v['MoiQuanHeNguoiThan'],
+        'nam_sinh' => $v['nam_sinh'],
+        'SDTNguoiThan' => $v['SDTNguoiThan'],
+        'hoc_van' => $v['hoc_van'],
+        'tot_nghiep' => $v['tot_nghiep'],
+        'ngon_ngu' => $v['ngon_ngu'],
+        'ld_nuoc_ngoai' => $v['ld_nuoc_ngoai'],
+        'ten_nuoc_chi_tiet' => $v['ten_nuoc_chi_tiet'],
+        'tt_giay_to' => $v['tt_giay_to'],
+        'ly_do' => $v['ly_do'],
+        'hut_thuoc' => $v['hut_thuoc'],
+        'uong_ruou' => $v['uong_ruou'],
+        'kinh_nghiem' => $kinh_nghiem,
+        'mix_tv' => $v['mix_tv'],
+        'loai_tau' => $loai_tau,
+        'ten_tau' => $v['ten_tau'],
+        'hai_do' => $hai_do,
+        'ten_thiet_bi' => $v['ten_thiet_bi'],
+        'file_cccd' => $fid_cccd,
+        'created' => REQUEST_TIME,
+      ))
+      ->execute();
 
- if ($fid_cccd > 0) {
-  $file = file_load($fid_cccd);
-  if ($file) {
-    $file->status = FILE_STATUS_PERMANENT;
-    file_save($file);
-    file_usage_add($file, 'isea_contact', 'tuyen_dung', $fid_cccd);
-    $fields['file_cccd'] = $fid_cccd;
-  }
- }
+    if ($fid_cccd > 0) {
+      $file = file_load($fid_cccd);
+      if ($file) {
+        $file->status = FILE_STATUS_PERMANENT;
+        file_save($file);
+        file_usage_add($file, 'isea_contact', 'tuyen_dung', $fid_cccd);
+        $fields['file_cccd'] = $fid_cccd;
+      }
+    }
 
-  drupal_set_message('Hồ sơ đã được gửi thành công!');
-  $_SESSION['isea_show_popup'] = TRUE;
+    drupal_set_message('Hồ sơ đã được gửi thành công!');
+    $_SESSION['isea_show_popup'] = TRUE;
   } catch (Exception $e) {
-    drupal_set_message($e->getMessage(), 'error'); 
+    drupal_set_message($e->getMessage(), 'error');
   }
 }
 
 /**
  * 3. Trang hiển thị danh sách trong Admin
  */
-function isea_contact_admin_tt_list() {
-  $header = array('ID', 'Chức danh','Họ tên','Bao nhiêu tuổi','Tình trạng hôn nhân','Số con',
-  'Chiều cao','Cân nặng','Size-giày','Cỡ quần áo','Địa chỉ','Số điện thoại','Microsoft team','Email',
-  'Mức lương thấp nhất có thể chấp nhận','Nguyện vọng, mong muốn khác',
-  'Họ tên người bảo lãnh','Mối quan hệ người bảo lãnh','Năm sinh người bảo lãnh','Số điện thoại người bảo lãnh',
-  'Học trường Hàng Hải nào ','Thời gian tốt nghiệp ','Bạn biết những ngôn ngữ nào?','Từng đi lao động ở nước ngoài chưa?','Nước nào?',
-  'Tình trạng giấy tờ','Lí do khác',
-  'Có hút thuốc không ?','Có uống rượu không','Có kinh nghiệm vào các nước sau chưa ','Đã đi mix với thuyền viên nước nào rồi ?','Từng đi kinh nghiệm loại tàu nào rồi?',
-  'Tên tàu khác','Có kinh nghiệm loại Hải Đồ điện tử nào rồi','Nhập tên thiết bị khác','File CCCD','Ngày gửi');
+function isea_contact_admin_tt_list()
+{
+  $header = array(
+    'ID',
+    'Chức danh',
+    'Họ tên',
+    'Bao nhiêu tuổi',
+    'Tình trạng hôn nhân',
+    'Số con',
+    'Chiều cao',
+    'Cân nặng',
+    'Size-giày',
+    'Cỡ quần áo',
+    'Địa chỉ',
+    'Số điện thoại',
+    'Microsoft team',
+    'Email',
+    'Mức lương thấp nhất có thể chấp nhận',
+    'Nguyện vọng, mong muốn khác',
+    'Họ tên người bảo lãnh',
+    'Mối quan hệ người bảo lãnh',
+    'Năm sinh người bảo lãnh',
+    'Số điện thoại người bảo lãnh',
+    'Học trường Hàng Hải nào ',
+    'Thời gian tốt nghiệp ',
+    'Bạn biết những ngôn ngữ nào?',
+    'Từng đi lao động ở nước ngoài chưa?',
+    'Nước nào?',
+    'Tình trạng giấy tờ',
+    'Lí do khác',
+    'Có hút thuốc không ?',
+    'Có uống rượu không',
+    'Có kinh nghiệm vào các nước sau chưa ',
+    'Đã đi mix với thuyền viên nước nào rồi ?',
+    'Từng đi kinh nghiệm loại tàu nào rồi?',
+    'Tên tàu khác',
+    'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
+    'Nhập tên thiết bị khác',
+    'File CCCD',
+    'Ngày gửi'
+  );
   $rows = array();
 
   $result = db_select('isea_thuyen_vien', 't')
@@ -597,23 +667,23 @@ function isea_contact_admin_tt_list() {
     ->orderBy('created', 'DESC')
     ->execute();
 
-    foreach ($result as $record) {
-      $file_display = t('Không có file'); 
-  if (!empty($record->file_cccd)) {
-    $file_obj = file_load($record->file_cccd);
-    if ($file_obj) {
-      // Tạo URL đầy đủ đến file
-      $url = file_create_url($file_obj->uri);
-      // Tạo link HTML: <a href="..." target="_blank">Xem ảnh/file</a>
-      $file_display = l(t('Xem ảnh/file'), $url, array(
-        'attributes' => array('target' => '_blank', 'title' => $file_obj->filename)
-      ));
+  foreach ($result as $record) {
+    $file_display = t('Không có file');
+    if (!empty($record->file_cccd)) {
+      $file_obj = file_load($record->file_cccd);
+      if ($file_obj) {
+        // Tạo URL đầy đủ đến file
+        $url = file_create_url($file_obj->uri);
+        // Tạo link HTML: <a href="..." target="_blank">Xem ảnh/file</a>
+        $file_display = l(t('Xem ảnh/file'), $url, array(
+          'attributes' => array('target' => '_blank', 'title' => $file_obj->filename)
+        ));
+      }
     }
-  }
-$hien_thi_tuoi = '';
-if (!empty($record->tuoi) && $record->tuoi != '0000-00-00') {
-    $hien_thi_tuoi = date('d/m/Y', strtotime($record->tuoi));
-}
+    $hien_thi_tuoi = '';
+    if (!empty($record->tuoi) && $record->tuoi != '0000-00-00') {
+      $hien_thi_tuoi = date('d/m/Y', strtotime($record->tuoi));
+    }
     $rows[] = array(
       $record->id,
       check_plain($record->chuc_danh),
@@ -664,62 +734,104 @@ if (!empty($record->tuoi) && $record->tuoi != '0000-00-00') {
 /**
  * 4. Hàm xuất CSV để mở bằng Excel
  */
-function isea_contact_tt_export_csv() {
+function isea_contact_tt_export_csv()
+{
   header('Content-Type: text/csv; charset=utf-8');
   header('Content-Disposition: attachment; filename=ds-thuyen_vien.csv');
   $fp = fopen('php://output', 'w');
-  fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); 
-  
-  fputcsv($fp, array('ID', 'Chức danh','Họ tên','Bao nhiêu tuổi','Tình trạng hôn nhân','Số con',
-  'Chiều cao','Cân nặng','Size-giày','Cỡ quần áo','Địa chỉ','Số điện thoại','Microsoft team','Email',
-  'Mức lương thấp nhất có thể chấp nhận','Nguyện vọng, mong muốn khác',
-  'Họ tên người bảo lãnh','Mối quan hệ người bảo lãnh','Năm sinh người bảo lãnh','Số điện thoại người bảo lãnh',
-  'Học trường Hàng Hải nào ','Thời gian tốt nghiệp ','Bạn biết những ngôn ngữ nào?','Từng đi lao động ở nước ngoài chưa?','Nước nào?',
-  'Tình trạng giấy tờ','Lí do khác',
-  'Có hút thuốc không ?','Có uống rượu không','Có kinh nghiệm vào các nước sau chưa ','Đã đi mix với thuyền viên nước nào rồi ?','Từng đi kinh nghiệm loại tàu nào rồi?',
-  'Tên tàu khác','Có kinh nghiệm loại Hải Đồ điện tử nào rồi','Nhập tên thiết bị khác','File CCCD','Ngày gửi'));
+  fprintf($fp, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+  fputcsv($fp, array(
+    'ID',
+    'Chức danh',
+    'Họ tên',
+    'Bao nhiêu tuổi',
+    'Tình trạng hôn nhân',
+    'Số con',
+    'Chiều cao',
+    'Cân nặng',
+    'Size-giày',
+    'Cỡ quần áo',
+    'Địa chỉ',
+    'Số điện thoại',
+    'Microsoft team',
+    'Email',
+    'Mức lương thấp nhất có thể chấp nhận',
+    'Nguyện vọng, mong muốn khác',
+    'Họ tên người bảo lãnh',
+    'Mối quan hệ người bảo lãnh',
+    'Năm sinh người bảo lãnh',
+    'Số điện thoại người bảo lãnh',
+    'Học trường Hàng Hải nào ',
+    'Thời gian tốt nghiệp ',
+    'Bạn biết những ngôn ngữ nào?',
+    'Từng đi lao động ở nước ngoài chưa?',
+    'Nước nào?',
+    'Tình trạng giấy tờ',
+    'Lí do khác',
+    'Có hút thuốc không ?',
+    'Có uống rượu không',
+    'Có kinh nghiệm vào các nước sau chưa ',
+    'Đã đi mix với thuyền viên nước nào rồi ?',
+    'Từng đi kinh nghiệm loại tàu nào rồi?',
+    'Tên tàu khác',
+    'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
+    'Nhập tên thiết bị khác',
+    'File CCCD',
+    'Ngày gửi'
+  ));
   $data = db_select('isea_thuyen_vien', 't')->fields('t')->execute();
   foreach ($data as $r) {
-      $file_url = ''; 
-  if (!empty($r->file_cccd)) {
-    $file_obj = file_load($r->file_cccd); 
-    if ($file_obj) {
-      $file_url = file_create_url($file_obj->uri);
+    $file_url = '';
+    if (!empty($r->file_cccd)) {
+      $file_obj = file_load($r->file_cccd);
+      if ($file_obj) {
+        $file_url = file_create_url($file_obj->uri);
+      }
     }
-  }
-  $csv_date = '';
-if (!empty($r->tuoi) && $r->tuoi != '0000-00-00') {
-    $csv_date = date('d/m/Y', strtotime($r->tuoi));
-}
+    $csv_date = '';
+    if (!empty($r->tuoi) && $r->tuoi != '0000-00-00') {
+      $csv_date = date('d/m/Y', strtotime($r->tuoi));
+    }
     fputcsv($fp, array(
-    $r->id,$r->chuc_danh, 
-    $r->ho_ten,  
-    $csv_date,
-    $r->hon_nhan, $r->so_con,
-    $r->chieu_cao, $r->can_nang, $r->size_giay,$r->co_quan_ao, 
-    $r->que_quan,$r->sdt,$r->mcft,$r->email, 
-    $r->muc_luong,$r->mong_muon,
-    $r->HoTenNguoiThan,
-    $r->MoiQuanHeNguoiThan,$r->nam_sinh,
-    $r->SDTNguoiThan,
-    $r->hoc_van,$r->tot_nghiep,
-    $r->ngon_ngu,
-    $r->ld_nuoc_ngoai,
-    $r->ten_nuoc_chi_tiet,
-    $r->tt_giay_to,
-    $r->ly_do,
-    $r-> hut_thuoc,
-    $r->uong_ruou,
-    $r->kinh_nghiem,
-    $r->mix_tv,
-    $r->loai_tau,
-    $r->ten_tau,
-    $r->hai_do,
-    $r->ten_thiet_bi,
-    $file_url,
-    date('d/m/Y', $r->created)));
+      $r->id,
+      $r->chuc_danh,
+      $r->ho_ten,
+      $csv_date,
+      $r->hon_nhan,
+      $r->so_con,
+      $r->chieu_cao,
+      $r->can_nang,
+      $r->size_giay,
+      $r->co_quan_ao,
+      $r->que_quan,
+      $r->sdt,
+      $r->mcft,
+      $r->email,
+      $r->muc_luong,
+      $r->mong_muon,
+      $r->HoTenNguoiThan,
+      $r->MoiQuanHeNguoiThan,
+      $r->nam_sinh,
+      $r->SDTNguoiThan,
+      $r->hoc_van,
+      $r->tot_nghiep,
+      $r->ngon_ngu,
+      $r->ld_nuoc_ngoai,
+      $r->ten_nuoc_chi_tiet,
+      $r->tt_giay_to,
+      $r->ly_do,
+      $r->hut_thuoc,
+      $r->uong_ruou,
+      $r->kinh_nghiem,
+      $r->mix_tv,
+      $r->loai_tau,
+      $r->ten_tau,
+      $r->hai_do,
+      $r->ten_thiet_bi,
+      $file_url,
+      date('d/m/Y', $r->created)
+    ));
   }
   fclose($fp);
 }
-
-

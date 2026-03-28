@@ -254,9 +254,9 @@ function isea_contact_customer_form1($form, &$form_state) {
     '#markup' => '
       <div class="hotline-container">
         <p>Hotline tư vấn, đào tạo, tuyển dụng lao động</p>
-        <p><span class="phone">0934.255.955</span> - Ms Thúy (Zalo)</p>
-        <p><span class="phone">0936.940.987</span> - Ms Phương (Zalo)</p>
-        <p><span class="phone">0902.017.287</span> - Ms Trà My (Zalo)</p>
+        <p><span class="phone">0366.893.485</span> - Ms Thu Trang (Zalo)</p>
+        <p><span class="phone">090.151.8819</span> - Ms Thắm (Zalo)</p>
+        <p><span class="phone">0904.162.189</span> - Ms Vân (Zalo)</p>
       </div>',
   );
   // 2. Nhóm các nút điều hướng (Actions)
@@ -307,20 +307,20 @@ if (!empty($_SESSION['isea_show_popup'])) {
  * 1. Khai báo Menu cho Admin
  */
 function isea_contact_menu1() {
-  $items['gui-thong-tin'] = array(
+  $items['/gui-thong-tin'] = array(
     'title' => 'Gửi hồ sơ thuyền viên',
     'page callback' => 'contact_page_custom_render',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
 
-  $items['admin/thuyen-vien'] = array(
+  $items['admin/tuyen-sinh'] = array(
     'title' => 'Danh sách thuyền viên',
     'page callback' => 'isea_contact_admin_list',
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['admin/thuyen-vien/export'] = array(
+  $items['admin/tuyen-sinh/export'] = array(
     'page callback' => 'isea_contact_export_csv',
     'access arguments' => array('access administration pages'),
     'type' => MENU_CALLBACK,
@@ -423,7 +423,7 @@ function isea_contact_admin_list1() {
   }
 
 
-  $link_export = l('📥 Xuất file Excel (CSV)', 'admin/thuyen-vien/export', array('attributes' => array('style' => 'font-weight:bold; color:green;')));
+  $link_export = l('📥 Xuất file Excel (CSV)', 'admin/tuyen-sinh/export', array('attributes' => array('style' => 'font-weight:bold; color:green;')));
   return $link_export . theme('table', array('header' => $header, 'rows' => $rows));
 }
 

@@ -2,24 +2,24 @@
 function contact_page_custom_render() {
   $form = drupal_get_form('isea_contact_customer_form');
   //$messages = theme('status_messages'); 
-  $form_output = drupal_render($form);
+   $form_output = drupal_render($form);
 
    $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
 
   $output = '<!DOCTYPE html>
   <html>
   <head>
-    <title>Liên hệ PACIFIC</title>
+    <title>Liên hệ PACIFIC MANPOWER</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
-    <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
+    <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
   </head>
   <body>
    <div class="min-h-screen bg-maritime">
         <div class="container">
+            ' . $messages . '
             <div class="form-card">
                 <header class="form-header">
-                    <h1>WELCOME TO PACIFIC MANPOWER</h1>
+                    <h1>WELCOME TO PACIFIC MANPOWER VIET NAM CO., LTD</h1>
                     <div class="header-content">
                         <img src="' . $logo_path . '" alt="SEN logo" class="SEN-logo">
                         <p>Mời bạn gửi thông tin thật chi tiết để PACIFIC MANPOWER có thể hỗ trợ bạn tốt nhất nhé! 😊</p>
@@ -36,12 +36,14 @@ function contact_page_custom_render() {
   print $output;
   drupal_page_footer(); 
   
+  
 } 
 
 /**
  * 3. Hàm định nghĩa Form 
  */
 function isea_contact_customer_form($form, &$form_state) { 
+   $form['#attributes']['id'] = 'crewForm';
    $form['group_basic_info'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -56,45 +58,6 @@ function isea_contact_customer_form($form, &$form_state) {
     '#attributes' => array('placeholder' => t('Nhập họ tên')),
   );
 
-/*
-$days = drupal_map_assoc(range(1, 31));
-$months = drupal_map_assoc(range(1, 12));
-$years = drupal_map_assoc(range(1900, date('Y')));
-$form['group_basic_info']['tuoi_container'] = array(
-  '#type' => 'container',
-);
-$form['group_basic_info']['tuoi_container']['title'] = array(
-  '#markup' => '<label>Bao nhiêu tuổi<span>*</span></label>',
-);
-
-// Tạo một wrapper phụ cho các select để giữ hàng ngang
-$form['group_basic_info']['tuoi_container']['fields'] = array(
-  '#type' => 'container',
-  '#attributes' => array('style' => 'display: flex; align-items: center; gap: 8px;'),
-);
-$form['group_basic_info']['tuoi_container']['fields']['day'] = array(
-  '#type' => 'select',
-  '#options' => $days,
-  '#default_value' => 1,
-  '#attributes' => array('class' => array('no-arrow-select')), 
-  '#suffix' => '<span class="delimiter">/</span>',
-);
-
-$form['group_basic_info']['tuoi_container']['fields']['month'] = array(
-  '#type' => 'select',
-  '#options' => $months,
-  '#default_value' => 1,
-  '#attributes' => array('class' => array('no-arrow-select')),
-  '#suffix' => '<span class="delimiter">/</span>',
-);
-
-$form['group_basic_info']['tuoi_container']['fields']['year'] = array(
-  '#type' => 'select',
-  '#options' => $years,
-  '#default_value' => 2000,
-  '#attributes' => array('class' => array('no-arrow-select')),
-);
-*/
 $form['group_basic_info']['tuoi'] = array(
   '#type' => 'textfield',
   '#title' => t('Bao nhiêu tuổi'),
@@ -171,7 +134,7 @@ $form['group_basic_info']['tuoi'] = array(
 
    $form['group_basic_info_ht']['SDTNguoiThan'] = array(
     '#type' => 'textfield',
-    '#title' => t('Số điện thoại người bảo lãnh'),
+    '#title' => t('SĐT người bảo lãnh'),
     '#required' => TRUE,
     '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
   );
@@ -213,7 +176,7 @@ $form['group_basic_info']['tuoi'] = array(
       '1' => t('Có'),
       '0' => t('Không'),
     ),
-    '#required' => TRUE, // Tạo dấu sao đỏ (*)
+    '#required' => TRUE, 
   );
 
   $form['group_basic_info_ht']['group_basic_info_ld']['ten_nuoc_chi_tiet'] = array(
@@ -292,28 +255,28 @@ $form['group_basic_info']['tuoi'] = array(
     ),
   );
 
-    // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
+   
   $form['hotline_info'] = array(
     '#markup' => '
       <div class="hotline-container">
   <p>Hotline tư vấn, đào tạo, tuyển dụng lao động</p>
   <div class="hotline-contacts">
     <div class="hotline-contact">
-      <a href="tel:0934255955">0934.255.955</a>
-      <span>- Ms Thúy (Zalo)</span>
+      <a href="tel:0366.893.485">0366.893.485</a>
+      <span>- Ms Thu Trang (Zalo)</span>
     </div>
     <div class="hotline-contact">
-      <a href="tel:0936940987">0936.940.987</a>
-      <span>- Ms Phương (Zalo)</span>
+      <a href="tel:090.151.8819">090.151.8819</a>
+      <span>- Ms Thắm (Zalo)</span>
     </div>
     <div class="hotline-contact">
-      <a href="tel:0902017287">0902.017.287</a>
-      <span>- Ms Trà My (Zalo)</span>
+      <a href="tel:0904.162.189">0904.162.189</a>
+      <span>- Ms Vân (Zalo)</span>
     </div>
   </div>
 </div>',
   );
-  // 2. Nhóm các nút điều hướng (Actions)
+  
   $form['actions'] = array('#type' => 'actions');
 
  $form['actions']['back'] = array(
@@ -327,25 +290,30 @@ $form['group_basic_info']['tuoi'] = array(
     )
   ),
 );
-
+/*
     $form['actions']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Gửi thông tin'),
     '#submit' => array('isea_contact_customer_form_submit'),
     '#attributes' => array('class' => array('btn-gui-ho-so')),
   );
- 
+ */
+$form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Gửi thông tin'),
+    '#id' => 'submitBtn', // Thêm dòng này để đặt ID là submitBtn
+    '#submit' => array('isea_contact_customer_form_submit'),
+    '#attributes' => array(
+        'class' => array('btn-gui-ho-so'),
+        'id' => 'submitBtn', // Bạn cũng có thể thêm vào attributes nếu muốn chắc chắn
+    ),
+);
+
 $form['#attached']['library'][] = 'isea_contact/file-upload-lib';
 
   return $form;
 }
 
-/**
- * 4. Hàm xử lý submit 
- */
-/**
- * 1. Khai báo Menu cho Admin
- */
 function isea_contact_menu() {
   $items['gui-ho-so'] = array(
     'title' => 'Gửi hồ sơ liên hệ',
@@ -353,6 +321,7 @@ function isea_contact_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+ 
     $items['thong-tin'] = array(
     'page callback' => 'thong_tin_callback', 
     'access callback' => TRUE,
@@ -363,6 +332,12 @@ function isea_contact_menu() {
     'page callback' => 'tuyen_sinh_callback', 
     'access callback' => TRUE,
     'file' => 'tuyen_sinh_pages.inc',     
+    'type' => MENU_CALLBACK,
+  );
+   $items['dang-ky'] = array(
+    'page callback' => 'trang_form_callback', 
+    'access callback' => TRUE,
+    'file' => 'trang_form_pages.inc',     
     'type' => MENU_CALLBACK,
   );
   $items['admin/gui-ho-so'] = array(
@@ -475,7 +450,6 @@ function isea_contact_admin_list() {
     if ($file_obj) {
       // Tạo URL đầy đủ đến file
       $url = file_create_url($file_obj->uri);
-      // Tạo link HTML: <a href="..." target="_blank">Xem ảnh/file</a>
       $file_display = l(t('Xem ảnh/file'), $url, array(
         'attributes' => array('target' => '_blank', 'title' => $file_obj->filename)
       ));
