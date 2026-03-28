@@ -68,7 +68,7 @@ function isea_contact_tt_form($form, &$form_state)
   $form["#attributes"]['class'] = 'form-card';
   $form_state["class"] = "form-card";
   $form_fields = array(
-    "personal_info" => array(
+    "Thông tin cá nhân" => array(
       "chuc_danh" => array(
         '#type' => 'select',
         '#title' => t('Chức danh'),
@@ -225,20 +225,6 @@ function isea_contact_tt_form($form, &$form_state)
         '#title' => t('Họ tên người bảo lãnh'),
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Họ tên người bảo lãnh')),
-      ),
-      'MoiQuanHeNguoiThan' => array(
-        '#type' => 'select',
-        '#title' => t('Mối quan hệ người bảo lãnh'),
-        '#options' => array(
-          '' => t('- Chọn mối quan hệ -'),
-          'Bố' => t('Bố'),
-          'Mẹ' => t('Mẹ'),
-          'Vợ' => t('Vợ'),
-          'Anh' => t('Anh'),
-          'Chị' => t('Chị'),
-          'Em' => t('Em'),
-        ),
-        '#required' => TRUE,
       ),
       'MoiQuanHeNguoiThan' => array(
         '#type' => 'select',
@@ -412,6 +398,49 @@ function isea_contact_tt_form($form, &$form_state)
 
   );
 
+  foreach ($form_fields as $group => $fields) {
+    $form[$group] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('form-section')
+      ),
+      'header' => array(
+        
+        '#markup' => '<div class="section-header"><div class="section-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <h2 class="section-title">'.t(ucfirst(str_replace('_', ' ', $group))).'</h2></div>'
+      ),
+    );
+    $form[$group]['grid'] = array(
+      "#type" => 'container',
+      '#attributes' => array(
+        'class' => array('form-grid'),
+      ),
+    );
+    foreach ($fields as $field_name => $field_info) {
+      // if(isset($field_info['#attributes'])){
+      //     if(isset($field_info['#attributes']['class'])){
+      //       $field_info['#attributes']['class'][] = 'form-group';
+      //     }else {
+      //       $field_info['#attributes']['class'] = array (
+      //         'form-group'
+      //       );
+      //     }
+      //   }else{
+      //     $field_info['#attributes'] = array(
+      //       'class' => array('form-group')
+      //     );
+      //   }
+      $field_info['#wrapper_attributes'] = array('class' => array('form-group'));
+      $form[$group]['grid'][$field_name] = $field_info;
+    }
+  }
+
   // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
   $form['hotline_info'] = array(
     '#markup' => '
@@ -483,7 +512,7 @@ function isea_contact_tt_form_submit($form, &$form_state)
       ->fields(array(
         'chuc_danh' => $v['chuc_danh'],
         'ho_ten' => $v['ho_ten'],
-        'tuoi'   => $tuoi_db,
+        'tuoi' => $tuoi_db,
         'hon_nhan' => $v['tinh_trang_hon_nhan'],
         'so_con' => $v['so_con'],
         'chieu_cao' => $v['chieu_cao'],
