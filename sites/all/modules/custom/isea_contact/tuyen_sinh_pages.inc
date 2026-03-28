@@ -53,6 +53,7 @@ function tuyen_sinh_callback()
                  ' . $form_output . '
                 </main>
                 </div>
+                
   </body>
   </html>';
   print $output;
@@ -105,390 +106,310 @@ function isea_contact_tt_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Nhập họ tên')),
       ),
+      'tuoi' => array(
+        '#type' => 'textfield',
+        '#title' => t('Bao nhiêu tuổi'),
+        '#required' => TRUE,
+        '#default_value' => '01/01/2001',
+        '#attributes' => array(
+          'class' => array('custom-datepicker-input'),
+          'placeholder' => 'dd/mm/yyyy',
+        ),
+      ),
+      'tinh_trang_hon_nhan' => array(
+        '#type' => 'select',
+        '#title' => t('Tình trạng hôn nhân'),
+        '#options' => array(
+          '' => t('- Chọn tình trạng -'),
+          'Độc thân' => t('Độc thân'),
+          'Đã kết hôn' => t('Đã kết hôn'),
+          'Đã ly hôn' => t('Đã ly hôn'),
+        ),
+        '#required' => TRUE,
+      ),
+      'so_con' => array(
+        '#type' => 'textfield',
+        '#title' => t('Số con (nếu có)'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập số con')),
+      ),
+      'chieu_cao' => array(
+        '#type' => 'textfield',
+        '#title' => t('Chiều cao (cm)'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('170')),
+      ),
+      'can_nang' => array(
+        '#type' => 'textfield',
+        '#title' => t('Cân nặng (kg)'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('65')),
+      ),
+      'size_giay' => array(
+        '#type' => 'select',
+        '#title' => t('Size giày'),
+        '#options' => array(
+          '' => t('- Chọn tình trạng -'),
+          '36' => t('36'),
+          '37' => t('37'),
+          '38' => t('38'),
+          '39' => t('39'),
+          '40' => t('40'),
+          '41' => t('41'),
+          '42' => t('42'),
+          '43' => t('43'),
+          '44' => t('44'),
+          '45' => t('45'),
+        ),
+        '#required' => TRUE,
+      ),
+      'co_quan_ao' => array(
+        '#type' => 'select',
+        '#title' => t('Cỡ quần áo'),
+        '#options' => array(
+          '' => t('- Chọn tình trạng -'),
+          'XS' => t('XS'),
+          'S' => t('S'),
+          'M' => t('M'),
+          'L' => t('L'),
+          'XL' => t('XL'),
+          'XXL' => t('XXL'),
+          'XXXL' => t('XXXL'),
+        ),
+        '#required' => TRUE,
+      ),
+      'que_quan' => array(
+        '#type' => 'textfield',
+        '#title' => t('Địa chỉ'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập thông tin')),
+      ),
+      'sdt' => array(
+        '#type' => 'textfield',
+        '#title' => t('Số điện thoại'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Số điện thoại')),
+      ),
+      'mcft' => array(
+        '#type' => 'textfield',
+        '#title' => t('Microsoft team'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Microsoft team')),
+      ),
+      'email' => array(
+        '#type' => 'textfield',
+        '#title' => t('Email'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Email')),
+      ),
     ),
 
 
-  );
-  $form['group_basic_info'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row'),
+    "gia_tri" => array(
+      'muc_luong' => array(
+        '#type' => 'textfield',
+        '#title' => t('Mức lương thấp nhất có thể chấp nhận'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Mức lương thấp nhất có thể chấp nhận')),
+      ),
+      'mong_muon' => array(
+        '#type' => 'textfield',
+        '#title' => t('Nguyện vọng, mong muốn khác'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nguyện vọng, mong muốn khác')),
+      ),
     ),
-  );
-
-  $form['group_basic_info']['ho_ten'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Họ và tên'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập họ tên')),
-  );
-
-  $form['group_basic_info']['tuoi'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Bao nhiêu tuổi'),
-    '#required' => TRUE,
-    '#default_value' => '01/01/2001',
-    '#attributes' => array(
-      'class' => array('custom-datepicker-input'),
-      'placeholder' => 'dd/mm/yyyy',
+    "gia_dinh" => array(
+      'HoTenNguoiThan' => array(
+        '#type' => 'textfield',
+        '#title' => t('Họ tên người bảo lãnh'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Họ tên người bảo lãnh')),
+      ),
+      'MoiQuanHeNguoiThan' => array(
+        '#type' => 'select',
+        '#title' => t('Mối quan hệ người bảo lãnh'),
+        '#options' => array(
+          '' => t('- Chọn mối quan hệ -'),
+          'Bố' => t('Bố'),
+          'Mẹ' => t('Mẹ'),
+          'Vợ' => t('Vợ'),
+          'Anh' => t('Anh'),
+          'Chị' => t('Chị'),
+          'Em' => t('Em'),
+        ),
+        '#required' => TRUE,
+      ),
+      'MoiQuanHeNguoiThan' => array(
+        '#type' => 'select',
+        '#title' => t('Mối quan hệ người bảo lãnh'),
+        '#options' => array(
+          '' => t('- Chọn mối quan hệ -'),
+          'Bố' => t('Bố'),
+          'Mẹ' => t('Mẹ'),
+          'Vợ' => t('Vợ'),
+          'Anh' => t('Anh'),
+          'Chị' => t('Chị'),
+          'Em' => t('Em'),
+        ),
+        '#required' => TRUE,
+      ),
+      'nam_sinh' => array(
+        '#type' => 'textfield',
+        '#title' => t('Năm sinh người bảo lãnh'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập năm sinh')),
+      ),
+      'SDTNguoiThan' => array(
+        '#type' => 'textfield',
+        '#title' => t('Số điện thoại người bảo lãnh'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
+      ),
     ),
-  );
-
-  $form['group_basic_info']['tinh_trang_hon_nhan'] = array(
-    '#type' => 'select',
-    '#title' => t('Tình trạng hôn nhân'),
-    '#options' => array(
-      '' => t('- Chọn tình trạng -'),
-      'Độc thân' => t('Độc thân'),
-      'Đã kết hôn' => t('Đã kết hôn'),
-      'Đã ly hôn' => t('Đã ly hôn'),
+    "trinh_do" => array(
+      'hoc_van' => array(
+        '#type' => 'select',
+        '#title' => t('Học trường Hàng Hải nào'),
+        '#options' => array(
+          '' => t('- Chọn thông tin -'),
+          'Đại Học Hàng Hải VN' => t('Đại Học Hàng Hải VN'),
+          'ĐHGTVT Hồ Chí Minh' => t('ĐHGTVT Hồ Chí Minh'),
+          'Cao Đẳng Hàng Hải 1' => t('Cao Đẳng Hàng Hải 1'),
+          'Cao Đẳng Hàng Hải 2' => t('Cao Đẳng Hàng Hải 2'),
+          'Cao Đẳng Nghề Bách Nghệ' => t('Cao Đẳng Nghề Bách Nghệ'),
+          'Cao Đẳng Nghề Duyên Dải' => t('Cao Đẳng Nghề Duyên Dải'),
+        ),
+        '#required' => TRUE,
+      ),
+      'tot_nghiep' => array(
+        '#type' => 'textfield',
+        '#title' => t('Thời gian tốt nghiệp'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('2000-2004')),
+      ),
+      'ngon_ngu' => array(
+        '#type' => 'textfield',
+        '#title' => t('Bạn biết những ngôn ngữ nào?'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập ngôn ngữ')),
+      ),
+      'ld_nuoc_ngoai' => array(
+        '#type' => 'radios',
+        '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
+        '#options' => array(
+          '1' => t('Có'),
+          '0' => t('Không'),
+        ),
+        '#required' => TRUE,
+      ),
+      'ten_nuoc_chi_tiet' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('Nhập tên nước đã lao động'),
+          'class' => array('input-nuoc-ngoai'),
+        ),
+      ),
     ),
-    '#required' => TRUE,
-  );
-
-  $form['group_basic_info']['so_con'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Số con (nếu có)'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập số con')),
-  );
-
-  $form['group_basic_info_ttc'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-5'),
+    "thong_tin_khac" => array(
+      'tt_giay_to' => array(
+        '#type' => 'radios',
+        '#title' => t('Tình trạng giấy tờ'),
+        '#options' => array(
+          'Cầm tay' => t('Cầm tay'),
+          'Đang để tại văn phòng cty khác' => t('Đang để tại văn phòng cty khác'),
+          'Lý do khác' => t('Lý do khác'),
+        ),
+        '#required' => TRUE,
+      ),
+      'ly_do' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'placeholder' => t('Nhập tên lý do'),
+          'class' => array('input-nuoc-ngoai'),
+        ),
+      ),
+      'hut_thuoc' => array(
+        '#type' => 'radios',
+        '#title' => t('Có hút thuốc không ?'),
+        '#options' => array(
+          '1' => t('Có'),
+          '0' => t('Không'),
+        ),
+      ),
+      'uong_ruou' => array(
+        '#type' => 'radios',
+        '#title' => t('Có uống rượu không ?'),
+        '#options' => array(
+          '1' => t('Có'),
+          '0' => t('Không'),
+        ),
+      ),
     ),
-  );
-  $form['group_basic_info_ttc']['chieu_cao'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Chiều cao (cm)'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('170')),
-  );
+    "cac_kinh_nghiem" => array(
+      'kinh_nghiem' => array(
+        '#type' => 'checkboxes',
+        '#title' => t('Có kinh nghiệm vào các nước sau chưa'),
+        '#options' => array(
+          'Úc' => t('Úc'),
+          'Mỹ' => t('Mỹ'),
+          'Canada' => t('Canada'),
+          'New Zealand' => t('New Zealand'),
+          'Hàn Quốc' => t('Hàn Quốc'),
+          'Châu Âu' => t('Châu Âu'),
+        ),
+      ),
+      'mix_tv' => array(
+        '#type' => 'textfield',
+        '#title' => t('Đã đi mix với thuyền viên nước nào rồi ? '),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập thông tin')),
+      ),
+      'loai_tau' => array(
+        '#type' => 'checkboxes',
+        '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi?'),
+        '#options' => array(
+          'Tàu Bulk Carrier' => t('Tàu Bulk Carrier'),
+          'Tàu Container' => t('Tàu Container'),
+          'Tàu LPG' => t('Tàu LPG'),
+          'Tàu Tank' => t('Tàu Tank'),
+          'Tàu General Cargo' => t('Tàu General Cargo'),
+          'Tàu Tàu Offshore' => t('Tàu Offshore'),
+          'Tàu Passenger' => t('Tàu Passenger'),
+          'Tàu pure car carrier' => t('Tàu pure car carrier'),
+          'Khác' => t('Khác'),
 
-  $form['group_basic_info_ttc']['can_nang'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Cân nặng (kg)'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('65')),
-  );
-
-  $form['group_basic_info_ttc']['size_giay'] = array(
-    '#type' => 'select',
-    '#title' => t('Size giày'),
-    '#options' => array(
-      '' => t('- Chọn tình trạng -'),
-      '36' => t('36'),
-      '37' => t('37'),
-      '38' => t('38'),
-      '39' => t('39'),
-      '40' => t('40'),
-      '41' => t('41'),
-      '42' => t('42'),
-      '43' => t('43'),
-      '44' => t('44'),
-      '45' => t('45'),
+        ),
+      ),
+      'ten_tau' => array(
+        '#type' => 'textfield',
+        '#attributes' => array('placeholder' => t('Nhập tàu')),
+      ),
+      'hai_do' => array(
+        '#type' => 'checkboxes',
+        '#title' => t('Có kinh nghiệm loại Hải Đồ điện tử nào rồi'),
+        '#options' => array(
+          'Furuno' => t('Furuno'),
+          'Tàu JRC' => t('JRC'),
+          'Tokyo Keiki' => t('Tokyo Keiki'),
+        ),
+      ),
+      'ten_thiet_bi' => array(
+        '#type' => 'textfield',
+        '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
+      ),
+      'file_cccd' => array(
+        '#type' => 'managed_file',
+        '#title' => t('File đính kèm ảnh căn cước công dân'),
+        '#upload_location' => 'public://cccd_uploads/',
+        '#attributes' => array('class' => array('customer-drop')),
+        '#upload_validators' => array(
+          'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
+          'file_validate_size' => array(5 * 1024 * 1024), // Giới hạn 5MB như trong ảnh
+        ),
+      ),
     ),
-    '#required' => TRUE,
-  );
 
-  $form['group_basic_info_ttc']['co_quan_ao'] = array(
-    '#type' => 'select',
-    '#title' => t('Cỡ quần áo'),
-    '#options' => array(
-      '' => t('- Chọn tình trạng -'),
-      'XS' => t('XS'),
-      'S' => t('S'),
-      'M' => t('M'),
-      'L' => t('L'),
-      'XL' => t('XL'),
-      'XXL' => t('XXL'),
-      'XXXL' => t('XXXL'),
-    ),
-    '#required' => TRUE,
-  );
-
-
-  $form['que_quan'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Địa chỉ'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập thông tin')),
-  );
-  $form['group_basic_info_se'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-4'),
-    ),
-  );
-  $form['group_basic_info_se']['sdt'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Số điện thoại'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Số điện thoại')),
-  );
-  $form['group_basic_info_se']['mcft'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Microsoft team'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Microsoft team')),
-  );
-  $form['group_basic_info_se']['email'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Email'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Email')),
-  );
-  $form['group_basic_info_nv'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-6'),
-    ),
-  );
-  $form['group_basic_info_nv']['muc_luong'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Mức lương thấp nhất có thể chấp nhận'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Mức lương thấp nhất có thể chấp nhận')),
-  );
-  $form['group_basic_info_nv']['mong_muon'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Nguyện vọng, mong muốn khác'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nguyện vọng, mong muốn khác')),
-  );
-  $form['group_basic_info_nt'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-5'),
-    ),
-  );
-
-  $form['group_basic_info_nt']['HoTenNguoiThan'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Họ tên người bảo lãnh'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Họ tên người bảo lãnh')),
-  );
-
-  $form['group_basic_info_nt']['MoiQuanHeNguoiThan'] = array(
-    '#type' => 'select',
-    '#title' => t('Mối quan hệ người bảo lãnh'),
-    '#options' => array(
-      '' => t('- Chọn mối quan hệ -'),
-      'Bố' => t('Bố'),
-      'Mẹ' => t('Mẹ'),
-      'Vợ' => t('Vợ'),
-      'Anh' => t('Anh'),
-      'Chị' => t('Chị'),
-      'Em' => t('Em'),
-    ),
-    '#required' => TRUE,
-  );
-
-  $form['group_basic_info_nt']['nam_sinh'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Năm sinh người bảo lãnh'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập năm sinh')),
-  );
-
-
-  $form['group_basic_info_nt']['SDTNguoiThan'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Số điện thoại người bảo lãnh'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
-  );
-  $form['group_basic_info_ht'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-2'),
-    ),
-  );
-
-  $form['group_basic_info_ht']['hoc_van'] = array(
-    '#type' => 'select',
-    '#title' => t('Học trường Hàng Hải nào'),
-    '#options' => array(
-      '' => t('- Chọn thông tin -'),
-      'Đại Học Hàng Hải VN' => t('Đại Học Hàng Hải VN'),
-      'ĐHGTVT Hồ Chí Minh' => t('ĐHGTVT Hồ Chí Minh'),
-      'Cao Đẳng Hàng Hải 1' => t('Cao Đẳng Hàng Hải 1'),
-      'Cao Đẳng Hàng Hải 2' => t('Cao Đẳng Hàng Hải 2'),
-      'Cao Đẳng Nghề Bách Nghệ' => t('Cao Đẳng Nghề Bách Nghệ'),
-      'Cao Đẳng Nghề Duyên Dải' => t('Cao Đẳng Nghề Duyên Dải'),
-    ),
-    '#required' => TRUE,
-  );
-  $form['group_basic_info_ht']['tot_nghiep'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Thời gian tốt nghiệp'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('2000-2004')),
-  );
-
-
-  $form['group_basic_info_ht']['ngon_ngu'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Bạn biết những ngôn ngữ nào?'),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập ngôn ngữ')),
-  );
-
-  $form['group_basic_info_gt'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-5'),
-    ),
-  );
-  $form['group_basic_info_gt']['group_basic_info_ld'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-1'),
-    ),
-  );
-
-  $form['group_basic_info_gt']['group_basic_info_ld']['ld_nuoc_ngoai'] = array(
-    '#type' => 'radios',
-    '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
-    '#options' => array(
-      '1' => t('Có'),
-      '0' => t('Không'),
-    ),
-    '#required' => TRUE,
-  );
-
-  $form['group_basic_info_gt']['group_basic_info_ld']['ten_nuoc_chi_tiet'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Nhập tên nước đã lao động'),
-      'class' => array('input-nuoc-ngoai'),
-    ),
-  );
-
-  $form['group_basic_info_gt']['group_basic_info_giay_to'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-1'),
-    ),
-  );
-
-  $form['group_basic_info_gt']['group_basic_info_giay_to']['tt_giay_to'] = array(
-    '#type' => 'radios',
-    '#title' => t('Tình trạng giấy tờ'),
-    '#options' => array(
-      'Cầm tay' => t('Cầm tay'),
-      'Đang để tại văn phòng cty khác' => t('Đang để tại văn phòng cty khác'),
-      'Lý do khác' => t('Lý do khác'),
-    ),
-    '#required' => TRUE,
-  );
-
-  $form['group_basic_info_gt']['group_basic_info_giay_to']['ly_do'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Nhập tên lý do'),
-      'class' => array('input-nuoc-ngoai'),
-    ),
-  );
-
-  $form['group_basic_info_gt']['hut_thuoc'] = array(
-    '#type' => 'radios',
-    '#title' => t('Có hút thuốc không ?'),
-    '#options' => array(
-      '1' => t('Có'),
-      '0' => t('Không'),
-    ),
-  );
-
-  $form['group_basic_info_gt']['uong_ruou'] = array(
-    '#type' => 'radios',
-    '#title' => t('Có uống rượu không ?'),
-    '#options' => array(
-      '1' => t('Có'),
-      '0' => t('Không'),
-    ),
-  );
-
-  $form['kinh_nghiem'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Có kinh nghiệm vào các nước sau chưa'),
-    '#options' => array(
-      'Úc' => t('Úc'),
-      'Mỹ' => t('Mỹ'),
-      'Canada' => t('Canada'),
-      'New Zealand' => t('New Zealand'),
-      'Hàn Quốc' => t('Hàn Quốc'),
-      'Châu Âu' => t('Châu Âu'),
-    ),
-  );
-
-  $form['mix_tv'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Đã đi mix với thuyền viên nước nào rồi ? '),
-    '#required' => TRUE,
-    '#attributes' => array('placeholder' => t('Nhập thông tin')),
-  );
-
-  $form['group_basic_info_cv'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-7'),
-    ),
-  );
-
-  $form['group_basic_info_cv']['loai_tau'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi?'),
-    '#options' => array(
-      'Tàu Bulk Carrier' => t('Tàu Bulk Carrier'),
-      'Tàu Container' => t('Tàu Container'),
-      'Tàu LPG' => t('Tàu LPG'),
-      'Tàu Tank' => t('Tàu Tank'),
-      'Tàu General Cargo' => t('Tàu General Cargo'),
-      'Tàu Tàu Offshore' => t('Tàu Offshore'),
-      'Tàu Passenger' => t('Tàu Passenger'),
-      'Tàu pure car carrier' => t('Tàu pure car carrier'),
-      'Khác' => t('Khác'),
-      'Tàu General Cargo' => t('Tàu General Cargo'),
-    ),
-  );
-  $form['group_basic_info_cv']['ten_tau'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array('placeholder' => t('Nhập tàu')),
-  );
-
-  $form['group_basic_info_tb'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('group-info-row-7'),
-    ),
-  );
-
-  $form['group_basic_info_tb']['hai_do'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Có kinh nghiệm loại Hải Đồ điện tử nào rồi'),
-    '#options' => array(
-      'Furuno' => t('Furuno'),
-      'Tàu JRC' => t('JRC'),
-      'Tokyo Keiki' => t('Tokyo Keiki'),
-    ),
-  );
-  $form['group_basic_info_tb']['ten_thiet_bi'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
-  );
-
-  $form['file_cccd'] = array(
-    '#type' => 'managed_file',
-    '#title' => t('File đính kèm ảnh căn cước công dân'),
-    '#upload_location' => 'public://cccd_uploads/',
-    '#attributes' => array('class' => array('customer-drop')),
-    '#upload_validators' => array(
-      'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
-      'file_validate_size' => array(5 * 1024 * 1024), // Giới hạn 5MB như trong ảnh
-    ),
   );
 
   // 1. Phần thông tin Hotline (Dùng Markup để viết HTML trực tiếp)
