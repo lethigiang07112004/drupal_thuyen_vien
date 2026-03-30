@@ -1,15 +1,19 @@
 <?php
 function tuyen_sinh_callback()
 {
+  $styles = drupal_get_css();
+  $scripts = drupal_get_js();
   $form = drupal_get_form('isea_contact_tt_form');
   $form_output = drupal_render($form);
-
+  $messages = theme('status_messages', array());
   $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
   $output = '<!DOCTYPE html>
   <html>
   <head>
     <title>Đăng ký thông tin thuyền viên - Pacific Manpower</title>
     <meta charset="utf-8">
+    '.$styles.'
+    '.$scripts.'
     <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
   </head>
@@ -49,14 +53,16 @@ function tuyen_sinh_callback()
                 <h1 class="form-title">Đăng ký thông tin thuyền viên</h1>
                 <p class="form-subtitle">Vui lòng điền đầy đủ thông tin ứng tuyển</p>
             </div>
+            <div>'. (!empty($messages) ? '<div id="messages">'.$messages.'</div>' : '')
    
-                 ' . $form_output . '
+                . $form_output . '
                 </main>
                 </div>
                 
   </body>
   </html>';
   print $output;
+  var_dump($messages);
   drupal_page_footer();
 }
 
@@ -65,8 +71,9 @@ function tuyen_sinh_callback()
  */
 function isea_contact_tt_form($form, &$form_state)
 {
+  drupal_add_library('system', 'drupal.form');
+  drupal_add_library('system', 'jquery.form');
   $form["#attributes"]['class'] = 'form-card';
-  $form_state["class"] = "form-card";
   $form_fields = array(
     "Thông tin cá nhân" => array(
       "chuc_danh" => array(
@@ -495,7 +502,6 @@ function isea_contact_tt_form($form, &$form_state)
   );
 
   $form['#attached']['library'][] = 'isea_contact/file-upload-lib';
-
   return $form;
 }
 
