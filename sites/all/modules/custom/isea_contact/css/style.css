@@ -574,7 +574,6 @@ input[type="radio"] {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-main);
-    margin-bottom: 0.5rem;
 }
 
 .form-radios {
@@ -781,6 +780,7 @@ input[type="radio"] {
     padding-bottom: 2rem;
 }
 .btn-back:hover {
+    text-decoration: underline;
     color: var(--error);
 }
 .btn-back {
@@ -790,9 +790,11 @@ input[type="radio"] {
     border: none;
     cursor: pointer;
     font-weight: 550;
+    text-decoration: underline;
+
 }
-.btn-gui-ho-so {
-    padding: 0.5rem 1.5rem;
+.form-actions .btn-gui-ho-so {
+    padding: 0.5rem 1rem;
     background-color: #10b981;
     color: white;
     border: none;
