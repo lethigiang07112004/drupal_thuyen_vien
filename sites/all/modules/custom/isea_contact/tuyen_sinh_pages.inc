@@ -8,7 +8,7 @@ function tuyen_sinh_callback()
   $output = '<!DOCTYPE html>
   <html>
   <head>
-    <title>Liên hệ PACIFIC</title>
+    <title>Đăng ký thông tin thuyền viên - Pacific Manpower</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
@@ -46,7 +46,7 @@ function tuyen_sinh_callback()
         <!-- Form Content -->
         <main class="form-container">
             <div class="form-header">
-                <h1 class="form-title">Đăng ky thông tin thuyền viên</h1>
+                <h1 class="form-title">Đăng ký thông tin thuyền viên</h1>
                 <p class="form-subtitle">Vui lòng điền đầy đủ thông tin ứng tuyển</p>
             </div>
    
@@ -205,7 +205,8 @@ function isea_contact_tt_form($form, &$form_state)
     ),
 
 
-    "gia_tri" => array(
+    "Giá trị" => array(
+      '#attributes' => array('class' => array('gia_tri_ban_than')),
       'muc_luong' => array(
         '#type' => 'textfield',
         '#title' => t('Mức lương thấp nhất có thể chấp nhận'),
@@ -219,7 +220,8 @@ function isea_contact_tt_form($form, &$form_state)
         '#attributes' => array('placeholder' => t('Nguyện vọng, mong muốn khác')),
       ),
     ),
-    "gia_dinh" => array(
+    "Gia đình" => array(
+       '#attributes' => array('class' => array('mqh_gia_dinh')),
       'HoTenNguoiThan' => array(
         '#type' => 'textfield',
         '#title' => t('Họ tên người bảo lãnh'),
@@ -253,7 +255,7 @@ function isea_contact_tt_form($form, &$form_state)
         '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
       ),
     ),
-    "trinh_do" => array(
+    "Trình độ" => array(
       'hoc_van' => array(
         '#type' => 'select',
         '#title' => t('Học trường Hàng Hải nào'),
@@ -280,6 +282,7 @@ function isea_contact_tt_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Nhập ngôn ngữ')),
       ),
+
       'ld_nuoc_ngoai' => array(
         '#type' => 'radios',
         '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
@@ -288,6 +291,7 @@ function isea_contact_tt_form($form, &$form_state)
           '0' => t('Không'),
         ),
         '#required' => TRUE,
+        
       ),
       'ten_nuoc_chi_tiet' => array(
         '#type' => 'textfield',
@@ -296,8 +300,9 @@ function isea_contact_tt_form($form, &$form_state)
           'class' => array('input-nuoc-ngoai'),
         ),
       ),
+
     ),
-    "thong_tin_khac" => array(
+    "Thông tin khác" => array(
       'tt_giay_to' => array(
         '#type' => 'radios',
         '#title' => t('Tình trạng giấy tờ'),
@@ -332,7 +337,8 @@ function isea_contact_tt_form($form, &$form_state)
         ),
       ),
     ),
-    "cac_kinh_nghiem" => array(
+    "Kinh nghiệm" => array(
+
       'kinh_nghiem' => array(
         '#type' => 'checkboxes',
         '#title' => t('Có kinh nghiệm vào các nước sau chưa'),
@@ -384,6 +390,10 @@ function isea_contact_tt_form($form, &$form_state)
         '#type' => 'textfield',
         '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
       ),
+    
+    ),
+    "File CCCD" => array(
+      '#attributes' => array('class' => array('file-cccd')),
       'file_cccd' => array(
         '#type' => 'managed_file',
         '#title' => t('File đính kèm ảnh căn cước công dân'),
@@ -405,7 +415,7 @@ function isea_contact_tt_form($form, &$form_state)
         'class' => array('form-section')
       ),
       'header' => array(
-        
+
         '#markup' => '<div class="section-header"><div class="section-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -413,7 +423,7 @@ function isea_contact_tt_form($form, &$form_state)
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
                         </div>
-                        <h2 class="section-title">'.t(ucfirst(str_replace('_', ' ', $group))).'</h2></div>'
+                        <h2 class="section-title">' . t(ucfirst(str_replace('_', ' ', $group))) . '</h2></div>'
       ),
     );
     $form[$group]['grid'] = array(

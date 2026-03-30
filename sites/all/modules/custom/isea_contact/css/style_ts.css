@@ -289,3 +289,8 @@ input[type="checkbox"]:focus {
     .form-card { padding: 20px; }
     .form-header h1 { font-size: 1.3rem; }
 }
+.form-actions{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
