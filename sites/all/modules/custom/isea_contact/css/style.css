@@ -557,6 +557,11 @@ border: 1px solid var(--border);
     }
 }
 
+.form-checkboxes .form-item, .form-radios .form-item {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* Style radio */
 
 .form-type-radios {
@@ -581,6 +586,15 @@ input[type="radio"] {
     /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem; */
+}
+
+.contain-other-option {
+    display: flex;
+    flex-direction: column;
+}
+
+.contain-other-option .wrapper {
+    order: 2;
 }
 
 .form-type-radio {

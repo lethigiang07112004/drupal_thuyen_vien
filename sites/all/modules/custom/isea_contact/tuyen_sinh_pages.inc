@@ -12,8 +12,8 @@ function tuyen_sinh_callback()
   <head>
     <title>Đăng ký thông tin thuyền viên - Pacific Manpower</title>
     <meta charset="utf-8">
-    '.$styles.'
-    '.$scripts.'
+    ' . $styles . '
+    ' . $scripts . '
     <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
   </head>
@@ -53,9 +53,9 @@ function tuyen_sinh_callback()
                 <h1 class="form-title">Đăng ký thông tin thuyền viên</h1>
                 <p class="form-subtitle">Vui lòng điền đầy đủ thông tin ứng tuyển</p>
             </div>
-            <div>'. (!empty($messages) ? '<div id="messages">'.$messages.'</div>' : '')
-   
-                . $form_output . '
+            <div>' . (!empty($messages) ? '<div id="messages">' . $messages . '</div>' : '')
+
+    . $form_output . '
                 </main>
                 </div>
                 
@@ -228,7 +228,7 @@ function isea_contact_tt_form($form, &$form_state)
       ),
     ),
     "Gia đình" => array(
-       '#attributes' => array('class' => array('mqh_gia_dinh')),
+      '#attributes' => array('class' => array('mqh_gia_dinh')),
       'HoTenNguoiThan' => array(
         '#type' => 'textfield',
         '#title' => t('Họ tên người bảo lãnh'),
@@ -298,16 +298,24 @@ function isea_contact_tt_form($form, &$form_state)
           '0' => t('Không'),
         ),
         '#required' => TRUE,
-        
-      ),
-      'ten_nuoc_chi_tiet' => array(
-        '#type' => 'textfield',
         '#attributes' => array(
-          'placeholder' => t('Nhập tên nước đã lao động'),
-          'class' => array('input-nuoc-ngoai'),
+          'class' => array('contain-other-option')
         ),
-      ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ten_nuoc_chi_tiet' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'placeholder' => t('Nhập tên nước đã lao động'),
+              'class' => array('input-nuoc-ngoai'),
+            ),
 
+          ),
+        )
+      ),
     ),
     "Thông tin khác" => array(
       'tt_giay_to' => array(
@@ -319,13 +327,22 @@ function isea_contact_tt_form($form, &$form_state)
           'Lý do khác' => t('Lý do khác'),
         ),
         '#required' => TRUE,
-      ),
-      'ly_do' => array(
-        '#type' => 'textfield',
         '#attributes' => array(
-          'placeholder' => t('Nhập tên lý do'),
-          'class' => array('input-nuoc-ngoai'),
+          'class' => array('contain-other-option')
         ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ly_do' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'placeholder' => t('Nhập tên lý do'),
+              'class' => array('input-nuoc-ngoai'),
+            ),
+          ),
+        )
       ),
       'hut_thuoc' => array(
         '#type' => 'radios',
@@ -379,11 +396,22 @@ function isea_contact_tt_form($form, &$form_state)
           'Khác' => t('Khác'),
 
         ),
+        '#attributes' => array(
+          'class' => array('contain-other-option')
+        ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ten_tau' => array(
+            '#type' => 'textfield',
+            '#attributes' => array('placeholder' => t('Nhập tàu')),
+          ),
+        )
+
       ),
-      'ten_tau' => array(
-        '#type' => 'textfield',
-        '#attributes' => array('placeholder' => t('Nhập tàu')),
-      ),
+
       'hai_do' => array(
         '#type' => 'checkboxes',
         '#title' => t('Có kinh nghiệm loại Hải Đồ điện tử nào rồi'),
@@ -392,12 +420,20 @@ function isea_contact_tt_form($form, &$form_state)
           'Tàu JRC' => t('JRC'),
           'Tokyo Keiki' => t('Tokyo Keiki'),
         ),
+        '#attributes' => array(
+          'class' => array('contain-other-option')
+        ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ten_thiet_bi' => array(
+            '#type' => 'textfield',
+            '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
+          ),
+        )
       ),
-      'ten_thiet_bi' => array(
-        '#type' => 'textfield',
-        '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
-      ),
-    
     ),
     "File CCCD" => array(
       '#attributes' => array('class' => array('file-cccd')),

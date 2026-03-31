@@ -135,38 +135,5 @@
   document.addEventListener('ajaxComplete', () => {
     setTimeout(initCustomDatepicker, 200);
   });
-   const form = document.getElementById('crewForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const modal = document.getElementById('successModal');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Simple validation
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.style.borderColor = 'var(--error)';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-
-            if (!isValid) {
-                return;
-            }
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `
-                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                </svg>
-                Dang gui ho so...
-            `;
-          })
 })();
 
