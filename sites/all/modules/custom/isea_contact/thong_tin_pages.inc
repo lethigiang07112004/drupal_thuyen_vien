@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacific Manpower</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #005dae;       /* Maritime Blue */
-            --primary-light: #3d8fd9; /* Lighter Blue for hovers */
-            --accent: #f59e0b;        /* Amber/Gold contrast */
+            --primary: #005dae;
+            /* Maritime Blue */
+            --primary-light: #3d8fd9;
+            /* Lighter Blue for hovers */
+            --accent: #f59e0b;
+            /* Amber/Gold contrast */
             --accent-hover: #d97706;
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
@@ -33,7 +37,7 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             overflow-x: hidden;
@@ -41,7 +45,7 @@
         }
 
         .font-display {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
         }
 
         /* Background Animation */
@@ -81,8 +85,13 @@
         }
 
         @keyframes waveMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* Floating Particles (Bubbles) */
@@ -95,9 +104,19 @@
         }
 
         @keyframes floatBubble {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
         }
 
         /* Main Container */
@@ -122,7 +141,8 @@
             align-items: center;
             gap: 0.75rem;
         }
-        .logo{
+
+        .logo {
             border-radius: 50%;
         }
 
@@ -139,7 +159,7 @@
         }
 
         .brand-text {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--primary);
@@ -172,15 +192,25 @@
         .status-dot::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background: #10b981;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
         /* Hero Section */
@@ -204,7 +234,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 
+            box-shadow:
                 0 20px 40px rgba(0, 93, 174, 0.15),
                 inset 0 0 0 1px rgba(0, 93, 174, 0.1);
             margin-bottom: 2.5rem;
@@ -213,8 +243,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .hero-title {
@@ -229,7 +266,7 @@
         .hero-title span {
             color: var(--primary);
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
             font-weight: 600;
         }
 
@@ -287,7 +324,7 @@
             background: #fff;
             border: 1px solid rgba(245, 158, 11, 0.2);
         }
-        
+
         .btn-secondary:hover {
             background: var(--accent);
             color: #fff;
@@ -326,9 +363,11 @@
             header {
                 padding: 1.5rem;
             }
+
             .hero {
                 padding: 1.5rem;
             }
+
             .hero-logo-main {
                 width: 80px;
                 height: 80px;
@@ -336,6 +375,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Background -->
@@ -354,19 +394,18 @@
                 </div>
                 <span class="brand-text">Pacific Manpower</span>
             </div>
-            
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Server Online
-            </div>
+
+
         </header>
 
         <!-- Hero -->
         <main class="hero">
             <div class="hero-logo-main">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#005dae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                    <path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>
+                    <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                    <path d="M17 18h1" />
+                    <path d="M12 18h1" />
+                    <path d="M7 18h1" />
                 </svg>
             </div>
 
@@ -380,28 +419,28 @@
                 <!-- Primary Button -->
                 <a href="/gui-ho-so" class="btn-action btn-primary">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="8.5" cy="7" r="4"/>
-                        <line x1="20" y1="8" x2="20" y2="14"/>
-                        <line x1="23" y1="11" x2="17" y2="11"/>
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="8.5" cy="7" r="4" />
+                        <line x1="20" y1="8" x2="20" y2="14" />
+                        <line x1="23" y1="11" x2="17" y2="11" />
                     </svg>
-                    Gui thong tin thuyen vien
+                    Gửi thông tin thuyền viên
                 </a>
 
                 <!-- Secondary Button -->
                 <a href="/tuyen-sinh" class="btn-action btn-secondary">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c3 3 9 3 12 0v-5" />
                     </svg>
-                    Tuyen sinh khoa cap tau bien
+                    Tuyển sinh khoá sơ cấp tàu biển
                 </a>
             </div>
         </main>
 
         <!-- Footer -->
         <footer>
-            <p>Ngay cap nhat: <span class="date-text" id="currentDate">26 - 03 - 2026</span></p>
+
         </footer>
     </div>
 
@@ -427,4 +466,5 @@
         // document.getElementById('currentDate').textContent = now.toLocaleDateString('vi-VN');
     </script>
 </body>
+
 </html>
