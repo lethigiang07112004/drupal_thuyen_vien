@@ -444,11 +444,11 @@ function isea_contact_tt_form($form, &$form_state)
         ),
       ),
     ),
-    "File CCCD" => array(
+    "Sổ tay thuyền viên" => array(
       '#attributes' => array('class' => array('file-cccd')),
       'file_cccd' => array(
         '#type' => 'managed_file',
-        '#title' => t('File đính kèm ảnh căn cước công dân'),
+        '#title' => t('File đính kèm toàn bộ sổ thuyền viên, hoặc trang cuối sổ thuyền viên'),
         '#upload_location' => 'public://cccd_uploads/',
         '#attributes' => array('class' => array('customer-drop')),
         '#upload_validators' => array(
@@ -668,7 +668,7 @@ function isea_contact_admin_tt_list()
     'Tên tàu khác',
     'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
     'Nhập tên thiết bị khác',
-    'File CCCD',
+    'Sổ tay thuyền viên',
     'Ngày gửi'
   );
   $rows = array();
@@ -788,7 +788,7 @@ function isea_contact_tt_export_csv()
     'Tên tàu khác',
     'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
     'Nhập tên thiết bị khác',
-    'File CCCD',
+    'Sổ tay thuyền viên',
     'Ngày gửi'
   ));
   $data = db_select('isea_thuyen_vien', 't')->fields('t')->execute();

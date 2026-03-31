@@ -18,7 +18,7 @@
         <div class="instruction-text">
           <span class="file-status" style="color: rgb(255,255,255);">📤 Chọn file...</span> 
           <span class="drag-text-sp" style="color: #9ca3af;">Hoặc kéo, thả file vào đây</span>
-          <div class="note-text" style="font-size: 0.9em; color: #9ca3af; margin-top: 5px;">(Lưu ý: kích thước file phải dưới 5MB)</div>
+          <div class="note-text" style="font-size: 0.9em; color: #9ca3af; margin-top: 5px;">(Lưu ý: kích thước file phải dưới 2MB)</div>
         </div>
         <div class="file-name-display" style="display: none; color: #374151; word-break: break-all;"></div>
       `;
