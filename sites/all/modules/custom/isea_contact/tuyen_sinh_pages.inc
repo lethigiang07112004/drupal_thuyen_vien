@@ -1,6 +1,12 @@
 <?php
 function tuyen_sinh_callback()
 {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && !empty($_SERVER['CONTENT_LENGTH'])) {
+    $max_upload = ini_get('upload_max_filesize');
+    $max_post = ini_get('post_max_size');
+    $limit = min($max_upload, $max_post, '2M');
+    drupal_set_message(t('File bạn chọn quá lớn. Vui lòng chọn file nhỏ hơn @limit.', array('@limit' => $limit)), 'error');
+  }
   $styles = drupal_get_css();
   $scripts = drupal_get_js();
   $form = drupal_get_form('isea_contact_tt_form');
