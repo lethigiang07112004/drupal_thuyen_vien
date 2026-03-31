@@ -289,31 +289,28 @@ function isea_contact_tt_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Nhập ngôn ngữ')),
       ),
-
-      'ld_nuoc_ngoai' => array(
-        '#type' => 'radios',
-        '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
-        '#options' => array(
-          '1' => t('Có'),
-          '0' => t('Không'),
-        ),
-        '#required' => TRUE,
+      'nuoc_ngoai_group' => array(
+        '#type' => 'container',
         '#attributes' => array(
-          'class' => array('contain-other-option')
+          'class' => array('form-group'),
         ),
-        'wrapper' => array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('wrapper'),
+        'ld_nuoc_ngoai' => array(
+          '#type' => 'radios',
+          '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
+          '#options' => array(
+            '1' => t('Có'),
+            '0' => t('Không'),
           ),
-          'ten_nuoc_chi_tiet' => array(
-            '#type' => 'textfield',
-            '#attributes' => array(
-              'placeholder' => t('Nhập tên nước đã lao động'),
-              'class' => array('input-nuoc-ngoai'),
-            ),
+          '#required' => TRUE,
 
+        ),
+        'ten_nuoc_chi_tiet' => array(
+          '#type' => 'textfield',
+          '#attributes' => array(
+            'placeholder' => t('Nhập tên nước đã lao động'),
+            'class' => array('input-nuoc-ngoai'),
           ),
+
         )
       ),
     ),
@@ -381,58 +378,50 @@ function isea_contact_tt_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Nhập thông tin')),
       ),
-      'loai_tau' => array(
-        '#type' => 'checkboxes',
-        '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi?'),
-        '#options' => array(
-          'Tàu Bulk Carrier' => t('Tàu Bulk Carrier'),
-          'Tàu Container' => t('Tàu Container'),
-          'Tàu LPG' => t('Tàu LPG'),
-          'Tàu Tank' => t('Tàu Tank'),
-          'Tàu General Cargo' => t('Tàu General Cargo'),
-          'Tàu Tàu Offshore' => t('Tàu Offshore'),
-          'Tàu Passenger' => t('Tàu Passenger'),
-          'Tàu pure car carrier' => t('Tàu pure car carrier'),
-          'Khác' => t('Khác'),
-
-        ),
+      'loai_tau_group' => array(
+        '#type' => 'container',
         '#attributes' => array(
-          'class' => array('contain-other-option')
+          'class' => array('form-group'),
         ),
-        'wrapper' => array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('wrapper'),
-          ),
-          'ten_tau' => array(
-            '#type' => 'textfield',
-            '#attributes' => array('placeholder' => t('Nhập tàu')),
-          ),
-        )
+        'loai_tau' => array(
+          '#type' => 'checkboxes',
+          '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi?'),
+          '#options' => array(
+            'Tàu Bulk Carrier' => t('Tàu Bulk Carrier'),
+            'Tàu Container' => t('Tàu Container'),
+            'Tàu LPG' => t('Tàu LPG'),
+            'Tàu Tank' => t('Tàu Tank'),
+            'Tàu General Cargo' => t('Tàu General Cargo'),
+            'Tàu Tàu Offshore' => t('Tàu Offshore'),
+            'Tàu Passenger' => t('Tàu Passenger'),
+            'Tàu pure car carrier' => t('Tàu pure car carrier'),
+            'Khác' => t('Khác'),
 
+          ),
+        ),
+        'ten_tau' => array(
+          '#type' => 'textfield',
+          '#attributes' => array('placeholder' => t('Nhập tàu')),
+        ),
       ),
-
-      'hai_do' => array(
-        '#type' => 'checkboxes',
-        '#title' => t('Có kinh nghiệm loại Hải Đồ điện tử nào rồi'),
-        '#options' => array(
-          'Furuno' => t('Furuno'),
-          'Tàu JRC' => t('JRC'),
-          'Tokyo Keiki' => t('Tokyo Keiki'),
-        ),
+      'hai_do_group' => array(
+        '#type' => 'container',
         '#attributes' => array(
-          'class' => array('contain-other-option')
+          'class' => array('form-group'),
         ),
-        'wrapper' => array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('wrapper'),
+        'hai_do' => array(
+          '#type' => 'checkboxes',
+          '#title' => t('Có kinh nghiệm loại Hải Đồ điện tử nào rồi'),
+          '#options' => array(
+            'Furuno' => t('Furuno'),
+            'Tàu JRC' => t('JRC'),
+            'Tokyo Keiki' => t('Tokyo Keiki'),
           ),
-          'ten_thiet_bi' => array(
-            '#type' => 'textfield',
-            '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
-          ),
-        )
+        ),
+        'ten_thiet_bi' => array(
+          '#type' => 'textfield',
+          '#attributes' => array('placeholder' => t('Nhập thiết bị khác')),
+        ),
       ),
     ),
     "File CCCD" => array(
