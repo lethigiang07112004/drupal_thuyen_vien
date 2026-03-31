@@ -224,7 +224,7 @@ body {
 .form-group, .form-grid .form-item {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap:0.5rem;
 }
 
 .form-item, .form-actions {
@@ -257,17 +257,27 @@ input, input[type="text"], input[type="password"], input[type="email"], input[ty
 .form-input,
 .form-select,
 .form-textarea,
-.form-item input[type='text'], .form-item input[type='select'], .form-item textarea  {
+ .form-item input[type='select'], .form-item textarea  {
     width: 100%;
     padding: 0.875rem 1rem;
     background: var(--bg-body);
-    
     border-radius: 10px;
     font-size: 0.9rem;
     font-family: inherit;
     color: var(--text-main);
     transition: all 0.2s ease;
 }
+.form-item input[type='text']  {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-body);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--text-main) !important;
+    transition: all 0.2s ease;
+}
+
 .form-input:not(.error),
 .form-select:not(.error),
 .form-textarea:not(.error),
@@ -292,6 +302,15 @@ border: 1px solid var(--border);
     border-color: var(--primary);
     background: #fff;
     box-shadow: 0 0 0 3px rgba(0, 93, 174, 0.1);
+  
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+    -webkit-text-fill-color: var(--text-main) !important;
+}
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+    -webkit-text-fill-color: var(--text-main) !important;
 }
 
 .form-select {
@@ -559,15 +578,15 @@ border: 1px solid var(--border);
 
 .form-checkboxes .form-item, .form-radios .form-item {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 /* Style radio */
-
+/*
 .form-type-radios {
     margin-bottom: 1rem;
 }
-
+*/
 input[type="radio"] {
     width: 0;
     height: 0;
@@ -659,11 +678,11 @@ input[type="radio"] {
 }
 
 /* Style checkbox */
-
+/*
 .form-type-checkboxes {
     margin-bottom: 1rem;
 }
-
+*/
 .form-type-checkboxes > label {
     display: block;
     font-size: 0.875rem;
@@ -678,6 +697,10 @@ input[type="radio"] {
     gap: 1rem;
 }
 
+.nganh_hoc .form-checkboxes{
+    display: flex;
+   justify-content: space-between;
+}
 .form-type-checkbox {
     margin: 0;
 }

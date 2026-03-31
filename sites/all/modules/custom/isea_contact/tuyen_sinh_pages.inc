@@ -15,6 +15,9 @@ function tuyen_sinh_callback()
     ' . $styles . '
     ' . $scripts . '
     <link rel="stylesheet" href="/' . drupal_get_path('module', 'isea_contact') . '/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <script src="/sites/all/modules/custom/isea_contact/js/file_upload.js"></script>
   </head>
   <body>
@@ -263,25 +266,31 @@ function isea_contact_tt_form($form, &$form_state)
       ),
     ),
     "Trình độ" => array(
-      'hoc_van' => array(
-        '#type' => 'select',
-        '#title' => t('Học trường Hàng Hải nào'),
-        '#options' => array(
-          '' => t('- Chọn thông tin -'),
-          'Đại Học Hàng Hải VN' => t('Đại Học Hàng Hải VN'),
-          'ĐHGTVT Hồ Chí Minh' => t('ĐHGTVT Hồ Chí Minh'),
-          'Cao Đẳng Hàng Hải 1' => t('Cao Đẳng Hàng Hải 1'),
-          'Cao Đẳng Hàng Hải 2' => t('Cao Đẳng Hàng Hải 2'),
-          'Cao Đẳng Nghề Bách Nghệ' => t('Cao Đẳng Nghề Bách Nghệ'),
-          'Cao Đẳng Nghề Duyên Dải' => t('Cao Đẳng Nghề Duyên Dải'),
+      'hoc_van_group' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('form-group'),
         ),
-        '#required' => TRUE,
-      ),
-      'tot_nghiep' => array(
-        '#type' => 'textfield',
-        '#title' => t('Thời gian tốt nghiệp'),
-        '#required' => TRUE,
-        '#attributes' => array('placeholder' => t('2000-2004')),
+        'hoc_van' => array(
+          '#type' => 'select',
+          '#title' => t('Học trường Hàng Hải nào'),
+          '#options' => array(
+            '' => t('- Chọn thông tin -'),
+            'Đại Học Hàng Hải VN' => t('Đại Học Hàng Hải VN'),
+            'ĐHGTVT Hồ Chí Minh' => t('ĐHGTVT Hồ Chí Minh'),
+            'Cao Đẳng Hàng Hải 1' => t('Cao Đẳng Hàng Hải 1'),
+            'Cao Đẳng Hàng Hải 2' => t('Cao Đẳng Hàng Hải 2'),
+            'Cao Đẳng Nghề Bách Nghệ' => t('Cao Đẳng Nghề Bách Nghệ'),
+            'Cao Đẳng Nghề Duyên Dải' => t('Cao Đẳng Nghề Duyên Dải'),
+          ),
+          '#required' => TRUE,
+        ),
+        'tot_nghiep' => array(
+          '#type' => 'textfield',
+          '#title' => t('Thời gian tốt nghiệp'),
+          '#required' => TRUE,
+          '#attributes' => array('placeholder' => t('2000-2004')),
+        ),
       ),
       'ngon_ngu' => array(
         '#type' => 'textfield',
@@ -298,8 +307,8 @@ function isea_contact_tt_form($form, &$form_state)
           '#type' => 'radios',
           '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
           '#options' => array(
-            '1' => t('Có'),
-            '0' => t('Không'),
+            'Có' => t('Có'),
+            'Không' => t('Không'),
           ),
           '#required' => TRUE,
 
@@ -345,38 +354,43 @@ function isea_contact_tt_form($form, &$form_state)
         '#type' => 'radios',
         '#title' => t('Có hút thuốc không ?'),
         '#options' => array(
-          '1' => t('Có'),
-          '0' => t('Không'),
+          'Có' => t('Có'),
+          'Không' => t('Không'),
         ),
       ),
       'uong_ruou' => array(
         '#type' => 'radios',
         '#title' => t('Có uống rượu không ?'),
         '#options' => array(
-          '1' => t('Có'),
-          '0' => t('Không'),
+          'Có' => t('Có'),
+          'Không' => t('Không'),
         ),
       ),
     ),
     "Kinh nghiệm" => array(
-
-      'kinh_nghiem' => array(
-        '#type' => 'checkboxes',
-        '#title' => t('Có kinh nghiệm vào các nước sau chưa'),
-        '#options' => array(
-          'Úc' => t('Úc'),
-          'Mỹ' => t('Mỹ'),
-          'Canada' => t('Canada'),
-          'New Zealand' => t('New Zealand'),
-          'Hàn Quốc' => t('Hàn Quốc'),
-          'Châu Âu' => t('Châu Âu'),
+      'kinh_nghiem_group' => array(
+        '#type' => 'container',
+         
+        '#attributes' => array(
+          'class' => array('form-group'),
         ),
-      ),
-      'mix_tv' => array(
-        '#type' => 'textfield',
-        '#title' => t('Đã đi mix với thuyền viên nước nào rồi ? '),
-        '#required' => TRUE,
-        '#attributes' => array('placeholder' => t('Nhập thông tin')),
+        'kinh_nghiem' => array(
+          '#type' => 'checkboxes',
+          '#title' => t('Có kinh nghiệm vào các nước sau chưa ?'),
+          '#options' => array(
+            'Úc' => t('Úc'),
+            'Mỹ' => t('Mỹ'),
+            'Canada' => t('Canada'),
+            'New Zealand' => t('New Zealand'),
+            'Hàn Quốc' => t('Hàn Quốc'),
+            'Châu Âu' => t('Châu Âu'),
+          ),
+        ),
+        'mix_tv' => array(
+          '#type' => 'textfield',
+          '#title' => t('Đã đi mix với thuyền viên nước nào rồi ? '),        
+          '#attributes' => array('placeholder' => t('Nhập thông tin')),
+        ),
       ),
       'loai_tau_group' => array(
         '#type' => 'container',
@@ -385,7 +399,7 @@ function isea_contact_tt_form($form, &$form_state)
         ),
         'loai_tau' => array(
           '#type' => 'checkboxes',
-          '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi?'),
+          '#title' => t('Từng đi kinh nghiệm loại tàu nào rồi ?'),
           '#options' => array(
             'Tàu Bulk Carrier' => t('Tàu Bulk Carrier'),
             'Tàu Container' => t('Tàu Container'),

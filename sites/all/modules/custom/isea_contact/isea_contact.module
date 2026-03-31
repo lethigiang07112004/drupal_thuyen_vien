@@ -187,14 +187,24 @@ function isea_contact_customer_form($form, &$form_state)
           'Không' => t('Không'),
         ),
         '#required' => TRUE,
-      ),
-      'ten_nuoc_chi_tiet' => array(
-        '#type' => 'textfield',
         '#attributes' => array(
-          'placeholder' => t('Nhập tên nước đã lao động'),
-          'class' => array('input-nuoc-ngoai'),
+          'class' => array('contain-other-option')
         ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ten_nuoc_chi_tiet' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'placeholder' => t('Nhập tên nước đã lao động'),
+              'class' => array('input-nuoc-ngoai'),
+            ),
+          ),
+        )
       ),
+
       'hut_thuoc' => array(
         '#type' => 'radios',
         '#title' => t('Có hút thuốc không ?'),
@@ -231,17 +241,24 @@ function isea_contact_customer_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Lương mong muốn')),
       ),
+
+    ),
+    "Ngành học bạn mong muốn" => array(
+      '#attributes' => array('class' => array('nganh_hoc')),
       'nganh_mong_muon' => array(
         '#type' => 'checkboxes',
         '#title' => t('Ngành bạn mong muốn học'),
+        '#required' => TRUE,
         '#options' => array(
           'Ngành điều khiển tàu biển' => t('Ngành điều khiển tàu biển'),
           'Ngành máy tàu biển' => t('Ngành máy tàu biển'),
           'Ngành điện tàu biển' => t('Ngành điện tàu biển'),
           'Ngành chế biến món ăn' => t('Ngành chế biến món ăn'),
         ),
+
       ),
     ),
+    
     "File CCCD" => array(
       '#attributes' => array('class' => array('file-cccd')),
       'file_cccd' => array(

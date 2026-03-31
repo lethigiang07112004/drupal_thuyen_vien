@@ -55,13 +55,14 @@
       });
     });
   };
+  
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initUploadCCCD);
   } else {
     initUploadCCCD();
   }
-
+  
   document.addEventListener('ajaxComplete', function() {
      setTimeout(initUploadCCCD, 200);
   });
