@@ -395,21 +395,15 @@ function isea_contact_menu()
     'file' => 'tuyen_sinh_pages.inc',
     'type' => MENU_CALLBACK,
   );
-  $items['dang-ky'] = array(
-    'page callback' => 'trang_form_callback',
-    'access callback' => TRUE,
-    'file' => 'trang_form_pages.inc',
-    'type' => MENU_CALLBACK,
-  );
   $items['admin/gui-ho-so'] = array(
     'title' => 'Danh sách hồ sơ thuyền viên',
     'page callback' => 'isea_contact_admin_list',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('access isea contact'),
     'type' => MENU_NORMAL_ITEM,
   );
   $items['admin/gui-ho-so/export'] = array(
     'page callback' => 'isea_contact_export_csv',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('access isea contact'),
     'type' => MENU_CALLBACK,
   );
   //isea_thuyen_vien
@@ -417,13 +411,13 @@ function isea_contact_menu()
     'title' => 'Danh sách tuyển sinh',
     'page callback' => 'isea_contact_admin_tt_list',
     'file' => 'tuyen_sinh_pages.inc',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('access isea contact'),
     'type' => MENU_NORMAL_ITEM,
   );
   $items['admin/tuyen-sinh/export'] = array(
     'page callback' => 'isea_contact_tt_export_csv',
     'file' => 'tuyen_sinh_pages.inc',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('access isea contact'),
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -646,4 +640,14 @@ function isea_contact_export_csv()
     ));
   }
   fclose($fp);
+}
+
+
+function isea_contact_permission() {
+  return array(
+    'access isea contact' => array(
+      'title' => t('Truy cập hồ sơ tuyển dụng/ thuyền viên'),
+      'description' => t('Cho phép người dùng xem nội dung trang hồ sơ tuyển dụng/ thuyền viên của module ISea Contact.'),
+    ),
+  );
 }
