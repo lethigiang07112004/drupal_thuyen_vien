@@ -265,7 +265,7 @@ function isea_contact_customer_form($form, &$form_state)
       ),
     ),
     
-    "Sổ tay thuyền viên" => array(
+    "Sổ thuyền viên" => array(
       '#attributes' => array('class' => array('file-cccd')),
       'file_cccd' => array(
         '#type' => 'managed_file',
@@ -515,7 +515,7 @@ function isea_contact_admin_list()
     'Mức lương hiện tại',
     'Mức lương mong muốn',
     'Ngành bạn mong muốn học',
-    'Sổ tay thuyền viên',
+    'Sổ thuyền viên',
     'Ngày gửi'
   );
   $rows = array();
@@ -604,7 +604,7 @@ function isea_contact_export_csv()
     'Mức lương hiện tại',
     'Mức lương mong muốn',
     'Ngành bạn mong muốn học',
-    'Sổ tay thuyền viên',
+    'Sổ thuyền viên',
     'Ngày gửi'
   ));
   $data = db_select('isea_tuyen_dung', 't')->fields('t')->execute();

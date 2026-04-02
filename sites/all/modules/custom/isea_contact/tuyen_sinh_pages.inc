@@ -444,7 +444,7 @@ function isea_contact_tt_form($form, &$form_state)
         ),
       ),
     ),
-    "Sổ tay thuyền viên" => array(
+    "Sổ thuyền viên" => array(
       '#attributes' => array('class' => array('file-cccd')),
       'file_cccd' => array(
         '#type' => 'managed_file',
@@ -668,7 +668,7 @@ function isea_contact_admin_tt_list()
     'Tên tàu khác',
     'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
     'Nhập tên thiết bị khác',
-    'Sổ tay thuyền viên',
+    'Sổ thuyền viên',
     'Ngày gửi'
   );
   $rows = array();
@@ -788,7 +788,7 @@ function isea_contact_tt_export_csv()
     'Tên tàu khác',
     'Có kinh nghiệm loại Hải Đồ điện tử nào rồi',
     'Nhập tên thiết bị khác',
-    'Sổ tay thuyền viên',
+    'Sổ thuyền viên',
     'Ngày gửi'
   ));
   $data = db_select('isea_thuyen_vien', 't')->fields('t')->execute();
