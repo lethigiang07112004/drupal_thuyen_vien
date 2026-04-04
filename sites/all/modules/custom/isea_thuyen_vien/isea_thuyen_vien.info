@@ -1,4 +1,0 @@
-name = ISEA Thông Tin Thuyên Viên
-description = Module quản lý thông tin thuyền viên.
-core = 7.x
-package = Custom

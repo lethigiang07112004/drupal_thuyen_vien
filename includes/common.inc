@@ -2506,8 +2506,8 @@ function drupal_http_header_attributes(array $attributes = array()) {
  * @ingroup sanitization
  */
 function drupal_attributes(array $attributes = array()) {
-  foreach ($attributes as $attribute => &$data) {
-    $data = implode(' ', (array) $data);
+  foreach ($attributes as $attribute => &$data) { 
+   $data = implode(' ', (array) $data);
     $data = $attribute . '="' . check_plain($data) . '"';
   }
   return $attributes ? ' ' . implode(' ', $attributes) : '';

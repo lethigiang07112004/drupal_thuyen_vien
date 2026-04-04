@@ -1,5 +1,0 @@
-name = ISEA Contact Form
-description = Module quản lý form gửi thông tin khách hàng cho Pacific Manpower.
-core = 7.x
-package = Custom
- 
