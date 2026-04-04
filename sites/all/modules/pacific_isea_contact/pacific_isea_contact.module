@@ -1,0 +1,693 @@
+<?php
+function contact_page_custom_render()
+{
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && !empty($_SERVER['CONTENT_LENGTH'])) {
+    $max_upload = ini_get('upload_max_filesize');
+    $max_post = ini_get('post_max_size');
+    $limit = min($max_upload, $max_post, '2M');
+    drupal_set_message(t('File bạn chọn quá lớn. Vui lòng chọn file nhỏ hơn @limit.', array('@limit' => $limit)), 'error');
+  }
+  $styles = drupal_get_css();
+  $scripts = drupal_get_js();
+  $form = drupal_get_form('pacific_isea_contact_customer_form');
+  $form_output = drupal_render($form);
+  $messages = theme('status_messages', array());
+  $logo_path = file_create_url('/sites/all/modules/custom/images/images1.jpg');
+  $output = '<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Gửi hồ sơ thuyền viên - Pacific Manpower</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    ' . $styles . '
+    ' . $scripts . '
+    <link rel="stylesheet" href="/' . drupal_get_path('module', 'pacific_isea_contact') . '/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <script src="/sites/all/modules/pacific_isea_contact/js/file_upload.js"></script>
+  </head>
+  <body>
+   <div class="bg-pattern">
+        <div class="bg-grid"></div>
+    </div>
+     <svg class="wave-decoration" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="rgba(0, 93, 174, 0.03)"
+            d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,186.7C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+    </svg>
+    <div class="page-container">
+    <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="logo-icon">
+                        <img src="/sites/all/modules/pacific_isea_contact/images/lg.png" class="logo">
+                    </div>
+                    <span class="brand-text">Pacific Manpower</span>
+                </div>
+
+                <a href="/thong-tin" class="back-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12" />
+                        <polyline points="12 19 5 12 12 5" />
+                    </svg>
+                    Quay lại
+                </a>
+            </div>
+        </header>
+        
+        <!-- Form Content -->
+        <main class="form-container">
+            <div class="form-header">
+                <h1 class="form-title">Hồ sơ thuyền viên</h1>
+                <p class="form-subtitle">Vui lòng điền đầy đủ thông tin thuyền viên</p>
+            </div>
+            <div>' . (!empty($messages) ? '<div id="messages">' . $messages . '</div>' : '')
+
+    . $form_output . '
+                </main>
+                </div>
+                
+  </body>
+  </html>';
+  print $output;
+  var_dump($messages);
+  drupal_page_footer();
+}
+
+/**
+ * 3. Hàm định nghĩa Form 
+ */
+function pacific_isea_contact_customer_form($form, &$form_state)
+{
+  drupal_add_library('system', 'drupal.form');
+  drupal_add_library('system', 'jquery.form');
+  $form["#attributes"]['class'] = 'form-card';
+  $form_state["class"] = "form-card";
+  $form_fields = array(
+    "Thông tin cá nhân" => array(
+      'ho_ten' => array(
+        '#type' => 'textfield',
+        '#title' => t('Họ và tên'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập họ tên')),
+      ),
+      'tuoi' => array(
+        '#type' => 'textfield',
+        '#title' => t('Ngày sinh'),
+        '#required' => TRUE,
+        '#default_value' => '01/01/2001',
+        '#attributes' => array(
+          'class' => array('custom-datepicker-input'),
+          'placeholder' => 'dd/mm/yyyy',
+        ),
+      ),
+      'sdt' => array(
+        '#type' => 'textfield',
+        '#title' => t('Số điện thoại'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Số điện thoại')),
+      ),
+      'tinh_trang_hon_nhan' => array(
+        '#type' => 'select',
+        '#title' => t('Tình trạng hôn nhân'),
+        '#options' => array(
+          '' => t('- Chọn tình trạng -'),
+          'Độc thân' => t('Độc thân'),
+          'Đã kết hôn' => t('Đã kết hôn'),
+          'Đã ly hôn' => t('Đã ly hôn'),
+        ),
+        '#required' => TRUE,
+      ),
+      'so_con' => array(
+        '#type' => 'textfield',
+        '#title' => t('Số con (nếu có)'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập số con')),
+      ),
+      'que_quan' => array(
+        '#type' => 'textfield',
+        '#title' => t('Quê quán'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Nhập thông tin')),
+      ),
+    ),
+    "Mối quan hệ" => array(
+      'HoTenNguoiThan' => array(
+        '#type' => 'textfield',
+        '#title' => t('Họ tên người bảo lãnh'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Họ tên người bảo lãnh')),
+      ),
+      'MoiQuanHeNguoiThan' => array(
+        '#type' => 'select',
+        '#title' => t('Mối quan hệ người bảo lãnh'),
+        '#options' => array(
+          '' => t('- Chọn mối quan hệ -'),
+          'Bố' => t('Bố'),
+          'Mẹ' => t('Mẹ'),
+          'Vợ' => t('Vợ'),
+          'Anh' => t('Anh'),
+          'Chị' => t('Chị'),
+          'Em' => t('Em'),
+        ),
+        '#required' => TRUE,
+      ),
+      'SDTNguoiThan' => array(
+        '#type' => 'textfield',
+        '#title' => t('SĐT người bảo lãnh'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('SĐT người bảo lãnh')),
+      ),
+    ),
+    "Trình độ" => array(
+      'hoc_van' => array(
+        '#type' => 'select',
+        '#title' => t('Trình độ học vấn?'),
+        '#options' => array(
+          '' => t('- Chọn thông tin -'),
+          'THCS' => t('THCS'),
+          'THPT' => t('THPT'),
+          'SƠ CẤP' => t('SƠ CẤP'),
+          'TRUNG CẤP' => t('TRUNG CẤP'),
+          'CAO ĐẲNG' => t('CAO ĐẲNG'),
+          'ĐẠI HỌC' => t('ĐẠI HỌC'),
+        ),
+        '#required' => TRUE,
+      ),
+      'ngon_ngu' => array(
+        '#type' => 'checkboxes',
+        '#title' => t('Bạn biết những ngôn ngữ nào?'),
+        '#options' => array(
+          'Tiếng Anh' => t('Tiếng Anh'),
+          'Tiếng Trung' => t('Tiếng Trung'),
+        ),
+      ),
+    ),
+    "Thông tin khác" => array(
+      'ld_nuoc_ngoai' => array(
+        '#type' => 'radios',
+        '#title' => t('Từng đi lao động ở nước ngoài chưa? / Nước nào?'),
+        '#options' => array(
+          'Có' => t('Có'),
+          'Không' => t('Không'),
+        ),
+        '#required' => TRUE,
+        '#attributes' => array(
+          'class' => array('contain-other-option')
+        ),
+        'wrapper' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('wrapper'),
+          ),
+          'ten_nuoc_chi_tiet' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'placeholder' => t('Nhập tên nước đã lao động'),
+              'class' => array('input-nuoc-ngoai'),
+            ),
+          ),
+        )
+      ),
+
+      'hut_thuoc' => array(
+        '#type' => 'radios',
+        '#title' => t('Có hút thuốc không ?'),
+        '#options' => array(
+          'Có' => t('Có'),
+          'Không' => t('Không'),
+        ),
+      ),
+      'uong_ruou' => array(
+        '#type' => 'radios',
+        '#title' => t('Có uống rượu không ?'),
+        '#options' => array(
+          'Có' => t('Có'),
+          'Không' => t('Không'),
+        ),
+      ),
+    ),
+    "Công việc - Mức lương" => array(
+      'cv_hien_tai' => array(
+        '#type' => 'textfield',
+        '#title' => t('Công việc hiện tại là gì?'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Công việc hiện tại')),
+      ),
+      'muc_luong' => array(
+        '#type' => 'textfield',
+        '#title' => t('Mức lương hiện tại bao nhiêu'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Lương hiện tại')),
+      ),
+      'muc_luong_mong_muon' => array(
+        '#type' => 'textfield',
+        '#title' => t('Mức lương mong muốn bao nhiêu'),
+        '#required' => TRUE,
+        '#attributes' => array('placeholder' => t('Lương mong muốn')),
+      ),
+
+    ),
+    "Ngành học bạn mong muốn" => array(
+      '#attributes' => array('class' => array('nganh_hoc')),
+      'nganh_mong_muon' => array(
+        '#type' => 'checkboxes',
+        '#title' => t('Ngành bạn mong muốn học'),
+        '#required' => TRUE,
+        '#options' => array(
+          'Ngành điều khiển tàu biển' => t('Ngành điều khiển tàu biển'),
+          'Ngành máy tàu biển' => t('Ngành máy tàu biển'),
+          'Ngành điện tàu biển' => t('Ngành điện tàu biển'),
+          'Ngành chế biến món ăn' => t('Ngành chế biến món ăn'),
+        ),
+
+      ),
+    ),
+    
+    "Sổ thuyền viên" => array(
+      '#attributes' => array('class' => array('file-cccd')),
+      'file_cccd' => array(
+        '#type' => 'managed_file',
+        '#title' => t('File đính kèm toàn bộ sổ thuyền viên, hoặc trang cuối sổ thuyền viên'),
+        '#upload_location' => 'public://cccd_uploads/',
+        '#attributes' => array('class' => array('customer-drop')),
+        '#upload_validators' => array(
+          'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
+          'file_validate_size' => array(5 * 1024 * 1024), // Giới hạn 5MB như trong ảnh
+        ),
+      ),
+    ),
+
+  );
+
+
+  foreach ($form_fields as $group => $fields) {
+    $form[$group] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('form-section')
+      ),
+      'header' => array(
+
+        '#markup' => '<div class="section-header"><div class="section-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <h2 class="section-title">' . t(ucfirst(str_replace('_', ' ', $group))) . '</h2></div>'
+      ),
+    );
+    $form[$group]['grid'] = array(
+      "#type" => 'container',
+      '#attributes' => array(
+        'class' => array('form-grid'),
+      ),
+    );
+    foreach ($fields as $field_name => $field_info) {
+      // if(isset($field_info['#attributes'])){
+      //     if(isset($field_info['#attributes']['class'])){
+      //       $field_info['#attributes']['class'][] = 'form-group';
+      //     }else {
+      //       $field_info['#attributes']['class'] = array (
+      //         'form-group'
+      //       );
+      //     }
+      //   }else{
+      //     $field_info['#attributes'] = array(
+      //       'class' => array('form-group')
+      //     );
+      //   }
+      $field_info['#wrapper_attributes'] = array('class' => array('form-group'));
+      $form[$group]['grid'][$field_name] = $field_info;
+    }
+  }
+
+
+  $form['hotline_info'] = array(
+    '#markup' => '
+      <div class="hotline-container">
+  <p>Hotline tư vấn, đào tạo, tuyển dụng lao động</p>
+  <div class="hotline-contacts">
+    <div class="hotline-contact">
+      <a href="tel:0366.893.485">0366.893.485</a>
+      <span>- Ms Thu Trang (Zalo)</span>
+    </div>
+    <div class="hotline-contact">
+      <a href="tel:090.151.8819">090.151.8819</a>
+      <span>- Ms Thắm (Zalo)</span>
+    </div>
+    <div class="hotline-contact">
+      <a href="tel:0904.162.189">0904.162.189</a>
+      <span>- Ms Vân (Zalo)</span>
+    </div>
+  </div>
+</div>',
+  );
+
+  $form['actions'] = array('#type' => 'actions');
+
+  $form['actions']['back'] = array(
+    '#markup' => l(
+      t('Quay lại'),
+      'thong-tin',
+      array(
+        'attributes' => array(
+          'class' => array('btn-back')
+        )
+      )
+    ),
+  );
+
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Gửi thông tin'),
+    '#submit' => array('pacific_isea_contact_customer_form_submit'),
+    '#attributes' => array('class' => array('btn-gui-ho-so')),
+  );
+
+
+  $form['#attached']['library'][] = 'pacific_isea_contact/file-upload-lib';
+
+  return $form;
+}
+
+function pacific_isea_contact_menu()
+{
+
+  $items['gui-ho-so'] = array(
+    'title' => 'Gửi hồ sơ liên hệ',
+    'page callback' => 'contact_page_custom_render',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['thong-tin'] = array(
+    'page callback' => 'pacific_thong_tin_callback',
+    'access callback' => TRUE,
+    'file' => 'pacific_thong_tin_pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  $items['tuyen-sinh'] = array(
+    'page callback' => 'pacific_tuyen_sinh_callback',
+    'access callback' => TRUE,
+    'file' => 'pacific_tuyen_sinh_pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/gui-ho-so'] = array(
+    'title' => 'Danh sách hồ sơ thuyền viên',
+    'page callback' => 'pacific_isea_contact_admin_list',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/gui-ho-so/export'] = array(
+    'page callback' => 'pacific_isea_contact_export_csv',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_CALLBACK,
+  );
+  //isea_thuyen_vien
+  $items['admin/tuyen-sinh'] = array(
+    'title' => 'Danh sách tuyển sinh',
+    'page callback' => 'pacific_isea_contact_admin_tt_list',
+    'file' => 'pacific_tuyen_sinh_pages.inc',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/tuyen-sinh/export'] = array(
+    'page callback' => 'pacific_isea_contact_tt_export_csv',
+    'file' => 'pacific_tuyen_sinh_pages.inc',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * 2. Hàm xử lý khi nhấn nút gửi (Submit)
+ */
+function pacific_isea_contact_customer_form_submit($form, &$form_state)
+{
+  $v = $form_state['values'];
+  $tuoi_db = '';
+  if (!empty($v['tuoi'])) {
+    // Chuyển từ dd/mm/yyyy sang yyyy-mm-dd
+    $date_obj = DateTime::createFromFormat('d/m/Y', $v['tuoi']);
+    $tuoi_db = $date_obj ? $date_obj->format('Y-m-d') : '';
+  }
+  $nganh_mong_muon = !empty($v['nganh_mong_muon']) ? implode(', ', array_filter($v['nganh_mong_muon'])) : '';
+  $ngon_ngu = !empty($v['ngon_ngu']) ? implode(', ', array_filter($v['ngon_ngu'])) : '';
+  $fid_cccd = !empty($v['file_cccd']) ? $v['file_cccd'] : 0;
+  // Lưu vào Database
+  try {
+    db_insert('isea_tuyen_dung')
+      ->fields(array(
+        'ho_ten' => $v['ho_ten'],
+        'tuoi'   => $tuoi_db,
+        'sdt' => $v['sdt'],
+        'hon_nhan' => $v['tinh_trang_hon_nhan'],
+        'so_con' => $v['so_con'],
+        'que_quan' => $v['que_quan'],
+        'HoTenNguoiThan' => $v['HoTenNguoiThan'],
+        'MoiQuanHeNguoiThan' => $v['MoiQuanHeNguoiThan'],
+        'SDTNguoiThan' => $v['SDTNguoiThan'],
+        'hoc_van' => $v['hoc_van'],
+        'ngon_ngu' => $ngon_ngu,
+        'ld_nuoc_ngoai' => $v['ld_nuoc_ngoai'],
+        'ten_nuoc_chi_tiet' => $v['ten_nuoc_chi_tiet'],
+        'hut_thuoc' => $v['hut_thuoc'],
+        'uong_ruou' => $v['uong_ruou'],
+        'cv_hien_tai' => $v['cv_hien_tai'],
+        'luong_hien_tai' => $v['muc_luong'],
+        'muc_luong_mong_muon' => $v['muc_luong_mong_muon'],
+        'nganh_mong_muon' => $nganh_mong_muon,
+        'file_cccd' => $fid_cccd,
+        'created' => REQUEST_TIME,
+      ))
+      ->execute();
+
+    if ($fid_cccd > 0) {
+      $file = file_load($fid_cccd);
+      if ($file) {
+        $file->status = FILE_STATUS_PERMANENT;
+        file_save($file);
+        file_usage_add($file, 'pacific_isea_contact', 'tuyen_dung', $fid_cccd);
+        $fields['file_cccd'] = $fid_cccd;
+      }
+    }
+
+    drupal_set_message('Hồ sơ đã được gửi thành công!');
+    $_SESSION['isea_show_popup'] = TRUE;
+  } catch (Exception $e) {
+    drupal_set_message($e->getMessage(), 'error');
+  }
+}
+
+/**
+ * 3. Trang hiển thị danh sách trong Admin
+ */
+function pacific_isea_contact_admin_list()
+{
+  $header = array(
+    'ID',
+    'Họ tên',
+    'Bao nhiêu tuổi',
+    'Số điện thoại',
+    'Tình trạng hôn nhân',
+    'Số con',
+    'Quê quán',
+    'Họ tên người bảo lãnh',
+    'Mối quan hệ người bảo lãnh',
+    'Số điện thoại người bảo lãnh',
+    'Trình độ học vấn',
+    'Bạn biết những ngôn ngữ nào?',
+    'Từng đi lao động ở nước ngoài chưa?',
+    'Nước nào?',
+    'Có hút thuốc không ?',
+    'Có uống rượu không',
+    'Công việc hiện tại là gì',
+    'Mức lương hiện tại',
+    'Mức lương mong muốn',
+    'Ngành bạn mong muốn học',
+    'Sổ thuyền viên',
+    'Ngày gửi'
+  );
+  $rows = array();
+
+  $result = db_select('isea_tuyen_dung', 't')
+    ->fields('t')
+    ->orderBy('created', 'DESC')
+    ->execute();
+
+  foreach ($result as $record) {
+    $file_display = t('Không có file');
+    if (!empty($record->file_cccd)) {
+      $file_obj = file_load($record->file_cccd);
+      if ($file_obj) {
+        // Tạo URL đầy đủ đến file
+        $url = file_create_url($file_obj->uri);
+        $file_display = l(t('Xem ảnh/file'), $url, array(
+          'attributes' => array('target' => '_blank', 'title' => $file_obj->filename)
+        ));
+      }
+    }
+    $hien_thi_tuoi = '';
+    if (!empty($record->tuoi) && $record->tuoi != '0000-00-00') {
+      $hien_thi_tuoi = date('d/m/Y', strtotime($record->tuoi));
+    }
+    $rows[] = array(
+      $record->id,
+      check_plain($record->ho_ten),
+      $hien_thi_tuoi,
+      check_plain($record->sdt),
+      check_plain($record->hon_nhan),
+      check_plain($record->so_con),
+      check_plain($record->que_quan),
+      check_plain($record->HoTenNguoiThan),
+      check_plain($record->MoiQuanHeNguoiThan),
+      check_plain($record->SDTNguoiThan),
+      check_plain($record->hoc_van),
+      check_plain($record->ngon_ngu),
+      $record->ld_nuoc_ngoai,
+      check_plain($record->ten_nuoc_chi_tiet),
+      $record->hut_thuoc,
+      $record->uong_ruou,
+      check_plain($record->cv_hien_tai),
+      check_plain($record->luong_hien_tai),
+      check_plain($record->muc_luong_mong_muon),
+      check_plain($record->nganh_mong_muon),
+      $file_display,
+      format_date($record->created, 'short'),
+    );
+  }
+
+
+  $link_export = l('📥 Xuất file Excel (CSV)', 'admin/gui-ho-so/export', array('attributes' => array('style' => 'font-weight:bold; color:green;')));
+  return $link_export . theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+
+/**
+ * 4. Hàm xuất CSV để mở bằng Excel
+ */
+function pacific_isea_contact_export_csv()
+{
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename=ds-tuyen-dung.csv');
+  $fp = fopen('php://output', 'w');
+  fprintf($fp, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+  fputcsv($fp, array(
+    'ID',
+    'Họ tên',
+    'Bao nhiêu tuổi',
+    'Số điện thoại',
+    'Tình trạng hôn nhân',
+    'Số con',
+    'Quê quán',
+    'Họ tên người bảo lãnh',
+    'Mối quan hệ người bảo lãnh',
+    'Số điện thoại người bảo lãnh',
+    'Trình độ học vấn',
+    'Bạn biết những ngôn ngữ nào?',
+    'Từng đi lao động ở nước ngoài chưa?',
+    'Nước nào?',
+    'Có hút thuốc không ?',
+    'Có uống rượu không',
+    'Công việc hiện tại là gì',
+    'Mức lương hiện tại',
+    'Mức lương mong muốn',
+    'Ngành bạn mong muốn học',
+    'Sổ thuyền viên',
+    'Ngày gửi'
+  ));
+  $data = db_select('isea_tuyen_dung', 't')->fields('t')->execute();
+  foreach ($data as $r) {
+    $file_url = '';
+    if (!empty($r->file_cccd)) {
+      $file_obj = file_load($r->file_cccd);
+      if ($file_obj) {
+        $file_url = file_create_url($file_obj->uri);
+      }
+    }
+    $csv_date = '';
+    if (!empty($r->tuoi) && $r->tuoi != '0000-00-00') {
+      $csv_date = date('d/m/Y', strtotime($r->tuoi));
+    }
+    fputcsv($fp, array(
+      $r->id,
+      $r->ho_ten,
+      $csv_date,
+      $r->sdt,
+      $r->hon_nhan,
+      $r->so_con,
+      $r->que_quan,
+      $r->HoTenNguoiThan,
+      $r->MoiQuanHeNguoiThan,
+      $r->SDTNguoiThan,
+      $r->hoc_van,
+      $r->ngon_ngu,
+      $r->ld_nuoc_ngoai,
+      $r->ten_nuoc_chi_tiet,
+      $r->hut_thuoc,
+      $r->uong_ruou,
+      $r->cv_hien_tai,
+      $r->luong_hien_tai,
+      $r->muc_luong_mong_muon,
+      $r->nganh_mong_muon,
+      $file_url,
+      date('d/m/Y', $r->created)
+    ));
+  }
+  fclose($fp);
+}
+
+
+function pacific_isea_contact_permission() {
+  return array(
+    'access isea contact' => array(
+      'title' => t('Truy cập hồ sơ tuyển dụng/ thuyền viên'),
+      'description' => t('Cho phép người dùng xem nội dung trang hồ sơ tuyển dụng/ thuyền viên của module ISea Contact.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_enable().
+ */
+function pacific_isea_contact_enable() {
+  // 1. Reset cache để Drupal nhận diện hook_permission() mới khai báo ở file .module
+  drupal_static_reset('user_permission_get_modules');
+  
+  // 2. Tìm Role ID = 5 (Biên tập viên)
+  $role = user_role_load(5);
+
+  if ($role) {
+    $permissions = array(
+      'access isea contact',
+      'access toolbar',
+      'access administration pages',
+      'view the administration theme',
+    );
+
+    // 3. Lọc các quyền hợp lệ để tránh lỗi "Undefined index"
+    $available_modules = user_permission_get_modules();
+    $valid_permissions = array();
+    
+    foreach ($permissions as $perm) {
+      if (isset($available_modules[$perm])) {
+        $valid_permissions[] = $perm;
+      }
+    }
+
+    // 4. Gán quyền và xóa cache menu
+    if (!empty($valid_permissions)) {
+      user_role_grant_permissions($role->rid, $valid_permissions);
+      menu_rebuild();
+      drupal_set_message(t('Đã tự động gán quyền cho vai trò @name.', array('@name' => $role->name)));
+    }
+  }
+}

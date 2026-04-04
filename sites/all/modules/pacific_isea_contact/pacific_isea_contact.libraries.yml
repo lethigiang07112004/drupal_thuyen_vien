@@ -1,0 +1,8 @@
+file-upload-lib:
+  version: 1.0
+  js:
+    js/file-upload.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
