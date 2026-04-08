@@ -422,6 +422,26 @@ function pacific_isea_contact_menu()
     'access arguments' => array('access isea contact'),
     'type' => MENU_CALLBACK,
   );
+  //phan hoi
+    $items['phan-hoi'] = array(
+    'page callback' => 'pacific_phan_hoi_callback',
+    'access callback' => TRUE,
+    'file' => 'pacific_phan_hoi_pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/phan-hoi'] = array(
+    'title' => 'Thông tin phản hồi',
+    'page callback' => 'pacific_isea_contact_admin_ph_list',
+    'file' => 'pacific_phan_hoi_pages.inc',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/phan-hoi/export'] = array(
+    'page callback' => 'pacific_isea_contact_ph_export_csv',
+    'file' => 'pacific_phan_hoi_pages.inc',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -690,4 +710,44 @@ function pacific_isea_contact_enable() {
       drupal_set_message(t('Đã tự động gán quyền cho vai trò @name.', array('@name' => $role->name)));
     }
   }
+}
+
+
+//pacific_phan_hoi
+function pacific_isea_contact_page_build(&$page) {
+  // 1. Ẩn nút khi ở trang quản trị để tránh vướng víu
+  if (path_is_admin(current_path())) {
+    return;
+  }
+  $feedback_html = '
+    <div class="custom-fixed-btn">
+      <a href="/phan-hoi">Thông tin phản hồi</a>
+    </div>
+    <style type="text/css">
+      .custom-fixed-btn a {
+        position: fixed;
+        bottom: 140px; 
+        right: 20px;
+        background: #eeeeee; 
+        color: #333 !important;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        z-index: 9999999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        display: block !important;
+        transition: all 0.3s ease;
+      }
+      .custom-fixed-btn a:hover {
+        background: #eeeeee;
+        color: #333 !important;
+        transform: translateY(-2px);
+      }
+    </style>';
+
+  $page['page_bottom']['feedback_button_module'] = array(
+    '#markup' => $feedback_html,
+  );
 }

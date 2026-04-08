@@ -74,8 +74,24 @@ function pacific_isea_contact_schema() {
     ),
     'primary key' => array('id'),
   );
-
-
+  $schema['isea_phan_hoi'] = array(
+    'description' => 'Thông tin phản hồi',
+    'fields' => array(
+      'id' => array('type' => 'serial', 'not null' => TRUE),
+      'ho_ten' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''),
+      'chuc_danh' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'tau_vua_di' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'feeback' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'chuc_danh_mong_muon' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'thoi_gian_san_sang' => array('type' => 'varchar', 'length' => 20, 'not null' => FALSE),
+      'size_tau_mong_muon' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'loai_tau_mong_muon' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'ten_tau' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'muc_luong_mong_muon' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'created' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
+    ),
+    'primary key' => array('id'),
+  );
   return $schema;
 }
 

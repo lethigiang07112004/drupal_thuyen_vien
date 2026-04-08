@@ -851,6 +851,11 @@ input[type="radio"] {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
 }
+.tt_phan_hoi{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.25rem;
+}
 .file-cccd .form-grid {
    display: grid;
     grid-template-columns: repeat(1, 1fr);
