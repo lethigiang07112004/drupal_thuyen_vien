@@ -123,7 +123,6 @@ function pacific_isea_contact_customer_form($form, &$form_state)
       'so_con' => array(
         '#type' => 'textfield',
         '#title' => t('Số con (nếu có)'),
-        '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Nhập số con')),
       ),
       'que_quan' => array(
@@ -294,6 +293,7 @@ function pacific_isea_contact_customer_form($form, &$form_state)
           'file_validate_extensions' => array('gif png jpg jpeg pdf docx'), // Các định dạng cho phép
           'file_validate_size' => array(5 * 1024 * 1024), // Giới hạn 5MB như trong ảnh
         ),
+        '#required' => TRUE,
       ),
     ),
 
