@@ -23,8 +23,8 @@ function pacific_isea_contact_schema() {
       'uong_ruou' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
       'cv_hien_tai' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
       'luong_hien_tai' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
-      'muc_luong_mong_muon' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
-      'nganh_mong_muon' => array('type' => 'text', 'size' => 'medium', 'not null' => FALSE),
+      'muc_luong_mong_muon' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),   
+      'chuc_danh' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
       'file_cccd' => array('type' => 'int', 'not null' => FALSE, 'default' => 0), // Luu FID cua file
       'created' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
     ),
@@ -109,3 +109,28 @@ function pacific_isea_contact_update_7005() {
     db_create_table($table_name, $table_definition);
   }
 }
+
+function pacific_isea_contact_update_7007() {
+  $table = 'isea_tuyen_dung'; 
+  if (!db_field_exists($table, 'chuc_danh')) {
+    $spec = array(
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => FALSE,
+      'description' => 'Chức danh hiện tại',
+    );
+    db_add_field($table, 'chuc_danh', $spec);
+  }
+  if (db_field_exists($table, 'nganh_mong_muon') && db_field_exists($table, 'chuc_danh')) {
+
+    db_update($table)
+      ->fields(array('chuc_danh' => 'nganh_mong_muon')) 
+      ->expression('chuc_danh', 'nganh_mong_muon')     
+      ->execute();
+  }
+  if (db_field_exists($table, 'nganh_mong_muon')) {
+    db_drop_field($table, 'nganh_mong_muon');
+  }
+
+}
+

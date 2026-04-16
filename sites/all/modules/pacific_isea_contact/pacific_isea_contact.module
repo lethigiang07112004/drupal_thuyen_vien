@@ -248,21 +248,38 @@ function pacific_isea_contact_customer_form($form, &$form_state)
         '#required' => TRUE,
         '#attributes' => array('placeholder' => t('Lương mong muốn')),
       ),
-
     ),
-    "Ngành học bạn mong muốn" => array(
-      '#attributes' => array('class' => array('nganh_hoc')),
-      'nganh_mong_muon' => array(
-        '#type' => 'checkboxes',
-        '#title' => t('Ngành bạn mong muốn học'),
-        '#required' => TRUE,
+    "Chức danh hiện tại" => array(
+      'chuc_danh' => array(
+        '#type' => 'select',
+        '#title' => t('Chức danh hiện tại'),
         '#options' => array(
-          'Ngành điều khiển tàu biển' => t('Ngành điều khiển tàu biển'),
-          'Ngành máy tàu biển' => t('Ngành máy tàu biển'),
-          'Ngành điện tàu biển' => t('Ngành điện tàu biển'),
-          'Ngành chế biến món ăn' => t('Ngành chế biến món ăn'),
+          '' => t('- CAPT -'),
+          'CAPT' => t('CAPT'),
+          'CO' => t('CO'),
+          '2O' => t('2O'),
+          '3O' => t('3O'),
+          'BSN' => t('BSN'),
+          'CARP' => t('CARP'),
+          'AB' => t('AB'),
+          'OSD' => t('OSD'),
+          'DCADET' => t('DCADET'),
+          'C.E' => t('C.E'),
+          '2E' => t('2E'),
+          '3E' => t('3E'),
+          '4E' => t('4E'),
+          'ETO' => t('ETO'),
+          'ELECT' => t('ELECT'),
+          'FTR' => t('FTR'),
+          'OLR' => t('OLR'),
+          'WPR' => t('WPR'),
+          'ECADET' => t('ECADET'),
+          'COOK' => t('COOK'),
+          'MESS' => t('MESS'),
+          'OSE' => t('OSE'),
+          'OS' => t('OS'),
         ),
-
+        '#required' => TRUE,
       ),
     ),
     
@@ -281,7 +298,6 @@ function pacific_isea_contact_customer_form($form, &$form_state)
     ),
 
   );
-
 
   foreach ($form_fields as $group => $fields) {
     $form[$group] = array(
@@ -482,7 +498,7 @@ function pacific_isea_contact_customer_form_submit($form, &$form_state)
         'cv_hien_tai' => $v['cv_hien_tai'],
         'luong_hien_tai' => $v['muc_luong'],
         'muc_luong_mong_muon' => $v['muc_luong_mong_muon'],
-        'nganh_mong_muon' => $nganh_mong_muon,
+        'chuc_danh' => $v['chuc_danh'],
         'file_cccd' => $fid_cccd,
         'created' => REQUEST_TIME,
       ))
@@ -530,7 +546,7 @@ function pacific_isea_contact_admin_list()
     'Công việc hiện tại là gì',
     'Mức lương hiện tại',
     'Mức lương mong muốn',
-    'Ngành bạn mong muốn học',
+    'Chức danh hiện tại',
     'Sổ thuyền viên',
     'Ngày gửi'
   );
@@ -567,7 +583,7 @@ function pacific_isea_contact_admin_list()
       check_plain($record->que_quan),
       check_plain($record->HoTenNguoiThan),
       check_plain($record->MoiQuanHeNguoiThan),
-      check_plain($record->SDTNguoiThan),
+      check_plain($record->SDTNguoiThan),    
       check_plain($record->hoc_van),
       check_plain($record->ngon_ngu),
       $record->ld_nuoc_ngoai,
@@ -577,7 +593,7 @@ function pacific_isea_contact_admin_list()
       check_plain($record->cv_hien_tai),
       check_plain($record->luong_hien_tai),
       check_plain($record->muc_luong_mong_muon),
-      check_plain($record->nganh_mong_muon),
+      check_plain($record->chuc_danh),
       $file_display,
       format_date($record->created, 'short'),
     );
@@ -619,7 +635,7 @@ function pacific_isea_contact_export_csv()
     'Công việc hiện tại là gì',
     'Mức lương hiện tại',
     'Mức lương mong muốn',
-    'Ngành bạn mong muốn học',
+    'Chức danh hiện tại',
     'Sổ thuyền viên',
     'Ngày gửi'
   ));
@@ -656,7 +672,7 @@ function pacific_isea_contact_export_csv()
       $r->cv_hien_tai,
       $r->luong_hien_tai,
       $r->muc_luong_mong_muon,
-      $r->nganh_mong_muon,
+      $r->chuc_danh,
       $file_url,
       date('d/m/Y', $r->created)
     ));
