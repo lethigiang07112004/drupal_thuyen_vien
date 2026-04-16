@@ -98,3 +98,14 @@ function pacific_isea_contact_schema() {
 function pacific_isea_contact_uninstall() {
   // Bang se tu dong bi xoa khi uninstall module
 }
+function pacific_isea_contact_update_7005() {
+  // Lấy định nghĩa bảng từ hook_schema()
+  $schema = pacific_isea_contact_schema();
+  $table_name = 'isea_phan_hoi';
+  $table_definition = $schema[$table_name];
+
+  // Kiểm tra nếu bảng chưa tồn tại thì mới tạo
+  if (!db_table_exists($table_name)) {
+    db_create_table($table_name, $table_definition);
+  }
+}
