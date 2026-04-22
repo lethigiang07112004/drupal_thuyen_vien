@@ -473,7 +473,7 @@ function pacific_isea_contact_customer_form_submit($form, &$form_state)
     $date_obj = DateTime::createFromFormat('d/m/Y', $v['tuoi']);
     $tuoi_db = $date_obj ? $date_obj->format('Y-m-d') : '';
   }
-  $nganh_mong_muon = !empty($v['nganh_mong_muon']) ? implode(', ', array_filter($v['nganh_mong_muon'])) : '';
+  $chuc_danh = !empty($v['chuc_danh']) ? implode(', ', array_filter($v['chuc_danh'])) : '';
   $ngon_ngu = !empty($v['ngon_ngu']) ? implode(', ', array_filter($v['ngon_ngu'])) : '';
   $fid_cccd = !empty($v['file_cccd']) ? $v['file_cccd'] : 0;
   // Lưu vào Database
