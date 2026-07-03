@@ -1,0 +1,5 @@
+name = ISEA Apply Fast
+description = Module dang ky ho so nhanh cho thuyen vien.
+core = 7.x
+package = Custom
+

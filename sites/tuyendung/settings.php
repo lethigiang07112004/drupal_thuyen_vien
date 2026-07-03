@@ -759,6 +759,19 @@ $conf['mail_display_name_site_name'] = TRUE;
  * @see drupal_session_start()
  * @see https://www.php.net/manual/en/session.configuration.php#ini.session.cookie-samesite
  */
-$sites['tuyendung.localhost.8080'] = 'tuyendung';
 
 
+if ($_SERVER['HTTP_HOST'] == 'tuyendung.localhost:8080' && $_SERVER['REQUEST_URI'] == '/') {
+    $landing_file = DRUPAL_ROOT . '/sites/tuyendung/static/pcf_index.php';
+/*
+    if (file_exists($landing_file)) {
+        // Đọc nội dung file HTML
+        echo file_get_contents($landing_file);
+        // Dừng mọi tiến trình xử lý của Drupal và Database
+        exit;
+    }
+        */
+}
+$base_url = 'http://tuyendung.localhost:8080';
+$cookie_domain = '.tuyendung.localhost';
+ini_set('session.cookie_secure', 0);

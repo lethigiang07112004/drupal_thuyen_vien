@@ -269,7 +269,7 @@ function pacific_isea_contact_customer_form($form, &$form_state)
           '4E' => t('4E'),
           'ETO' => t('ETO'),
           'ELECT' => t('ELECT'),
-          'FTR' => t('FTR'),
+          'FTR' => t('ELECT'),
           'OLR' => t('OLR'),
           'WPR' => t('WPR'),
           'ECADET' => t('ECADET'),

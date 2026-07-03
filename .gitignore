@@ -1,0 +1,16 @@
+# MySQL data
+mysql_data/
+database/
+
+# Database backup
+*.sql
+
+# Drupal uploaded files
+sites/default/files/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

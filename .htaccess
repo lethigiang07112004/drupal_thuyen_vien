@@ -61,6 +61,22 @@ DirectoryIndex index.php index.html index.htm
 <IfModule mod_rewrite.c>
   RewriteEngine on
 
+# 1. Xử lý các thư mục asset chính
+RewriteCond %{HTTP_HOST} ^(www\.)?tuyendung.localhost:8080\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/sites/tuyendung/static/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(css|js|images|img|assets|fonts|vendor)/(.*)$ /sites/tuyendung/static/$1/$2 [L,NC]
+
+# 2. Xử lý các file lẻ (như favicon hoặc file js nằm ở gốc thư mục static)
+RewriteCond %{HTTP_HOST} ^(www\.)?tuyendung.localhost:8080\.com$ [NC]
+RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ [NC]
+RewriteCond %{REQUEST_URI} !^/sites/tuyendung/static/
+RewriteRule ^(.*)$ /sites/tuyendung/static/$1 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ pcf_index.php?q=$1 [L,QSA]
+
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that
   # you don't bounce between http and https.

@@ -1,0 +1,202 @@
+<?php
+
+function pcf_is_site2() {
+ // return isset($_SERVER['HTTP_HOST'])
+   // && $_SERVER['HTTP_HOST'] == 'tuyendung.localhost:8080';
+    return TRUE;
+}
+
+function pcf_tuyendung_menu() {
+
+  // CHẶN SITE KHÁC
+  if (!pcf_is_site2()) {
+    return array();
+  }
+
+  $items = array();
+
+  $items['ajax/save-application'] = array(
+    'page callback' => 'pcf_tuyendung_save_ajax',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['admin/tuyen-dung-nhanh'] = array(
+    'title' => 'Danh sách ứng tuyển nhanh',
+    'page callback' => 'pcf_tuyendung_admin_list',
+    'access arguments' => array('access isea contact'),
+    'menu_name' => 'management',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/tuyen-dung/export-csv'] = array(
+    'page callback' => 'pcf_tuyendung_export_csv',
+    'access arguments' => array('access isea contact'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * 2. PERMISSION
+ */
+function pcf_tuyendung_permission() {
+
+  if (!pcf_is_site2()) {
+    return array();
+  }
+
+  return array(
+    'access isea contact' => array(
+      'title' => t('Xem và xuất dữ liệu Tuyển Dụng'),
+    ),
+  );
+}
+
+/**
+ * 3. ADMIN LIST
+ */
+function pcf_tuyendung_admin_list() {
+
+  if (!pcf_is_site2()) {
+    drupal_access_denied();
+    return;
+  }
+
+  $header = array('ID', 'Họ tên', 'SĐT', 'Chức danh',
+  'Loại tàu mong muốn','Tàu vừa đi','Kinh nghiệm','Trình độ tiếng anh',
+  'Sẵn sàng đi tàu','Ngày gửi');
+  $rows = array();
+
+  $result = db_select('isea_tuyen_dung_nhanh', 't')
+    ->fields('t')
+    ->orderBy('created', 'DESC')
+    ->execute();
+
+  foreach ($result as $data) {
+    $rows[] = array(
+      $data->id,
+      $data->ho_ten,
+      $data->sdt,
+      $data->chuc_danh,
+      $data->loai_tau_mong_muon,
+      $data->tau_vua_di,
+      $data->kinh_nghiem,
+      $data->tieng_anh,
+      $data->thoi_gian_san_sang,
+      format_date($data->created, 'short'),
+    );
+  }
+
+  $output = l('📥 Xuất file CSV', 'admin/tuyen-dung/export-csv',
+    array('attributes' => array('class' => array('button')))
+  );
+
+  $output .= theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+  ));
+
+  return $output;
+}
+
+/**
+ * 4. EXPORT CSV
+ */
+function pcf_tuyendung_export_csv() {
+
+  if (!pcf_is_site2()) {
+    drupal_access_denied();
+    return;
+  }
+
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename=tuyen-dung-nhanh.csv');
+
+  $output = fopen('php://output', 'w');
+
+  fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+  fputcsv($output, array(
+    'ID', 'Họ tên', 'SĐT', 'Chức danh','Kinh nghiệm',
+    'Tiếng anh','Tàu vừa đi', 'Sẵn sàng đi tàu',
+  'Loại tàu mong muốn',
+ 'Ngày gửi'
+  ));
+
+  $result = db_select('isea_tuyen_dung_nhanh', 't')
+    ->fields('t')
+    ->execute();
+
+  foreach ($result as $row) {
+    fputcsv($output, array(
+      $row->id,
+      $row->ho_ten,
+      $row->sdt,
+      $row->chuc_danh,
+      $row->kinh_nghiem,
+      $row->tieng_anh,
+      $row->tau_vua_di,
+      $row->thoi_gian_san_sang,
+      $row->loai_tau_mong_muon,
+      format_date($row->created, 'short'),
+    ));
+  }
+
+  fclose($output);
+  drupal_exit();
+}
+
+/**
+ * 5. AJAX SAVE
+ */
+function pcf_tuyendung_save_ajax() {
+
+  if (!pcf_is_site2()) {
+    drupal_json_output(array(
+      'status' => 'error',
+      'message' => 'Access denied'
+    ));
+    drupal_exit();
+  }
+
+  $data = array(
+    'ho_ten' => isset($_POST['ho_ten']) ? check_plain($_POST['ho_ten']) : '',
+    'sdt' => isset($_POST['sdt']) ? check_plain($_POST['sdt']) : '',
+    'chuc_danh' => isset($_POST['chuc_danh']) ? check_plain($_POST['chuc_danh']) : '',
+    'kinh_nghiem' => isset($_POST['kinh_nghiem']) ? check_plain($_POST['kinh_nghiem']) : '',
+    'tieng_anh' => isset($_POST['tieng_anh']) ? check_plain($_POST['tieng_anh']) : '',
+    'tau_vua_di' => isset($_POST['tau_vua_di']) ? check_plain($_POST['tau_vua_di']) : '',
+    'thoi_gian_san_sang' => isset($_POST['thoi_gian_san_sang']) ? check_plain($_POST['thoi_gian_san_sang']) : '',
+    'loai_tau_mong_muon' => isset($_POST['loai_tau_mong_muon']) ? check_plain($_POST['loai_tau_mong_muon']) : '',
+    'created' => REQUEST_TIME,
+  );
+
+  if (empty($data['ho_ten']) || empty($data['sdt'])) {
+    drupal_json_output(array(
+      'status' => 'error',
+      'message' => 'Thiếu thông tin bắt buộc'
+    ));
+    drupal_exit();
+  }
+
+  try {
+    $id = db_insert('isea_tuyen_dung_nhanh')
+      ->fields($data)
+      ->execute();
+
+    drupal_json_output(array(
+      'status' => 'success',
+      'id' => $id
+    ));
+  }
+  catch (Exception $e) {
+    drupal_json_output(array(
+      'status' => 'error',
+      'message' => $e->getMessage()
+    ));
+  }
+
+  drupal_exit();
+}

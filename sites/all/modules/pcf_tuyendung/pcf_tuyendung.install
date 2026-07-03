@@ -1,0 +1,79 @@
+<?php
+function pcf_tuyendung_schema() {
+  $schema['isea_tuyen_dung_nhanh'] = array(
+    'description' => 'Bang luu ho so thuyen vien',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial', 
+        'unsigned' => TRUE, 
+        'not null' => TRUE
+      ),
+      'ho_ten' => array(
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => TRUE, 
+        'default' => ''
+      ),
+      'sdt' => array(
+        'type' => 'varchar', 
+        'length' => 50,
+        'not null' => FALSE
+      ),
+      'chuc_danh' => array(
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => FALSE
+      ),
+      'kinh_nghiem'=> array(
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => FALSE
+      ),
+      'tau_vua_di' => array(
+        'type' => 'text', 
+        'size' => 'medium', 
+        'not null' => FALSE
+      ),
+      'thoi_gian_san_sang' => array(
+        'type' => 'varchar', 
+        'length' => 100, 
+        'not null' => FALSE
+      ),
+      'loai_tau_mong_muon' => array(
+        'type' => 'text', 
+        'size' => 'medium', 
+        'not null' => FALSE
+      ),
+      'created' => array(
+        'description' => 'Timestamp luc gui form',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+function pcf_tuyendung_uninstall() {
+}
+function pcf_tuyendung_update_7023() {
+  if (!db_table_exists('isea_tuyen_dung_nhanh')) {
+    $schema = pcf_tuyendung_schema();
+    db_create_table('isea_tuyen_dung_nhanh', $schema['isea_tuyen_dung_nhanh']);
+    return "Đã tạo bảng isea_tuyen_dung_nhanh thành công.";
+  }
+}
+function pcf_tuyendung_update_7029() {
+  if (db_table_exists('isea_tuyen_dung_nhanh') && !db_field_exists('isea_tuyen_dung_nhanh', 'tieng_anh')) {
+    $spec = array(
+      'type' => 'varchar', 
+      'length' => 100, 
+      'not null' => FALSE,
+      'description' => 'Trinh do tieng anh',
+    );
+    db_query("ALTER TABLE {isea_tuyen_dung_nhanh} ADD `tieng_anh` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Trinh do tieng anh' AFTER `kinh_nghiem`");
+    
+    return "Đã thêm trường tieng_anh vào sau trường kinh_nghiem thành công.";
+  }
+}

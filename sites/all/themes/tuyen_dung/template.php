@@ -240,7 +240,7 @@
     return $str;
   }
   function form_dang_ky(){
-    webform_node_view(node_load(1), 'full');
+   webform_node_view(node_load(1), 'full');
     return '<div id="utf-signin-dialog-block" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
   <div class="utf-signin-form-part">
     <ul class="utf-popup-tabs-nav-item">
@@ -259,10 +259,6 @@
 </div>
     ';
   }
-
-
-
-
 
 ?>
 

@@ -95,10 +95,11 @@ function pacific_isea_contact_schema() {
   return $schema;
 }
 
+
 function pacific_isea_contact_uninstall() {
-  // Bang se tu dong bi xoa khi uninstall module
+
 }
-function pacific_isea_contact_update_7005() {
+function pacific_isea_contact_update_7019() {
   // Lấy định nghĩa bảng từ hook_schema()
   $schema = pacific_isea_contact_schema();
   $table_name = 'isea_phan_hoi';
@@ -107,7 +108,7 @@ function pacific_isea_contact_update_7005() {
     db_create_table($table_name, $table_definition);
   }
 }
-function pacific_isea_contact_update_7015() {
+function pacific_isea_contact_update_7028() {
   $table = 'isea_tuyen_dung';
   $old_field = 'nganh_mong_muon';
   $new_field = 'chuc_danh';
@@ -119,5 +120,27 @@ function pacific_isea_contact_update_7015() {
       'description' => 'Chức danh hiện tại',
     );
     db_change_field($table, $old_field, $new_field, $spec);
+  }
+}
+
+function pacific_isea_contact_update_7007() {
+  if (!db_table_exists('isea_tuyen_dung')) {
+    $schema = pacific_isea_contact_schema();
+    db_create_table('isea_tuyen_dung', $schema['isea_tuyen_dung']);
+    return "Đã tạo bảng isea_tuyen_dung thành công.";
+  }
+}
+function pacific_isea_contact_update_7022() {
+  if (!db_table_exists('isea_phan_hoi')) {
+    $schema = pacific_isea_contact_schema();
+    db_create_table('isea_phan_hoi', $schema['isea_phan_hoi']);
+    return "Đã tạo bảng isea_phan_hoi thành công.";
+  }
+}
+function pacific_isea_contact_update_7023() {
+  if (!db_table_exists('isea_thuyen_vien')) {
+    $schema = pacific_isea_contact_schema();
+    db_create_table('isea_thuyen_vien', $schema['isea_thuyen_vien']);
+    return "Đã tạo bảng isea_thuyen_vien thành công.";
   }
 }
